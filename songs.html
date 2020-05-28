@@ -1,0 +1,799 @@
+
+<!doctype html>
+<html lang=''en-US>
+<head>
+<title>Music4All</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style>
+#search { position:fixed;z-index:1;top:0pt;left:0pt; display:inline-block; height:29pt; width:35%; text-align:center; background:springgreen; color:black; border-bottom:1pt solid black; border-radius:0pt !important; }
+* { font-family: verdana; text-decoration:none; border:0pt; outline:none; margin:0pt; padding:0pt; } 
+
+#theList { position:fixed;z-index:2; top:30pt; display:block; overflow-y:scroll; width:100%; background:black; }
+#theList a { display:block; height:80pt; color:black; font-weight:500; font-size:95%; margin-bottom:5pt; padding-top:7pt; padding-bottom:5pt; padding-left:3pt; text-align:center; line-height:17pt; } 
+#theList a:nth-child(odd) { background:lavender; } 
+#theList a:nth-child(even) { background:gainsboro; } 
+
+#vidSec {
+	position:absolute;z-index:1;top:30pt;display:block;width:100%;text-align:center;background:black;
+}
+</style>
+
+</head>
+
+<body style='background:black;text-align:center;'>
+
+
+
+<input id='search' type='text' placeholder='search here...' />
+
+<span id='goButton' style='position:fixed;z-index:1;top:0;left:35%;width:15%;background:darkgreen;color:white;padding-top:3pt;height:26pt;font-size:150%;font-weight:700;border-bottom:1pt solid black;'>Go</span>
+
+<select id="playlists" style='position:fixed;z-index:1;left:50%;display:inline-block; height:30pt; width:30%; text-align:center;border-bottom:1pt solid black; border-radius:0pt !important;'>
+	<option value="Select" selected>Select Playlist</option>
+	<option value="Gurbani">Gurbani Shabads</option>
+	<option value="RSSB_Shabads">RSSB Shabads</option>
+	<option value="Bhajans">Bhajans</option>
+	<option value="Sufi">Sufi</option>
+	<option value="Discourses">RSSB Discourses</option>
+	<option value="RSSB_QA">RSSB Question/Answers</option>
+	<option value="Misc_Shabads">Misc Shabads</option>
+	<option value="Hindi_Songs">Hindi Songs</option>
+	<option value="Punjabi_Songs">Punjabi Songs</option>
+	<option value="Telgu_Songs">Telgu Songs</option>
+	<option value="English_Songs">English Songs</option>
+	<option value="Instrumental">Instrumental</option>
+	<option value="Patriotic">Patriotic Songs</option>
+	<option value="Classical_Ragas">Classical Ragas</option>
+	<option value="Motivational_Raps">Motivational Raps</option>
+	<option value="Commercials">TV Commercials</option>
+</select>
+
+<a href='#' id='closeMenu' style='position:fixed;z-index:1;top:0;left:80%;width:20%;background:gold;color:black;padding-top:3pt;height:26pt;font-size:150%;font-weight:700;border-bottom:1pt solid black;'>X</a>
+
+<br><br><br>
+<h4 class='offer' style='color:gold;margin-top:2pt;margin-bottom:2pt;'>Add Shortcut to Android Home Screen</h4><br>
+<img class='offer' src='android.png' /><br><br>
+<h4 class='offer' style='color:gold;margin-top:2pt;margin-bottom:2pt;'>Add Shortcut to iPhone Home Screen</h4><br>
+<img class='offer' src='apple.png' />
+
+<ul id='theList'>
+<a href='#' class='content' title='gtQQR81-9kQ?'>Aisi Laagi Lagan|Anup Jalota|Bhajans</a>
+<a href='#' class='content' title='gLDXrE_4PHo?'>Akhiyan Hari Darshan Ki Pyasi|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='prJ9NbOycEI?'>Allah Tero Naam|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='E0GDQFZbIxo?'>Beet Gaye Din Bhajan Bina Re|Bhimsen Joshi|Bhajans</a>
+<a href='#' class='content' title='pjjUJEDD9U4?'>Bigdi Baat Bana De Ram|Mukesh|Bhajans</a>
+<a href='#' class='content' title='TU5bGg3JUxw?'>Dekh Tere Sansaar Ki Haalat|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='t2Paz57Lkpg?'>Doosron Ka Dukhda|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='L-yNRFfvTN4?'>Ek Tu Hi Bharosa|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='OFxsQ762rpw?'>Ghat Ghat Mein Panchi Bolta|Veena Sahasrabuddhe|Bhajans</a>
+<a href='#' class='content' title='4lo-5I7Ms7E?'>Hari Ka Dhyan Laga|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='BKjpt9_vpH8?'>Hari Tum Haro Jan Ki Peer|Jagjit Singh|Bhajans</a>
+<a href='#' class='content' title='8ig32hFhtQ4?'>He Ram He Ram|Hemant Chauhan|Bhajans</a>
+<a href='#' class='content' title='Ds2_lqACegw?'>Hum Ko Man Ki Shakti|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='iuYOla0dIsw?'>Humne Jag Ki Ajab|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='er3mWgt7YZY?'>Ishwar Allah Tero Naam|Satish Dehra|Bhajans</a>
+<a href='#' class='content' title='g_I0XFOe_v8?'>Itni Shakti Humein Dena Daata|Priyansh Paliwal|Bhajans</a>
+<a href='#' class='content' title='o7ASXf_NYfU?'>Jagiye Raga Vibhas Tulsidas Bhajan|P. Aruna|Bhajans</a>
+<a href='#' class='content' title='puGqmm-cVok?'>Kabhi Dhoop Kabhi Chhaon|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='Z2HB4z6gfpg?'>Kabir Amritbani|Debashish Dasgupta|Bhajans</a>
+<a href='#' class='content' title='wpGOMJP2ges?'>Kar Gujraan Gareebi Mein|Shabnam Virmani|Bhajans</a>
+<a href='#' class='content' title='pBIDGHYX4PY?'>Koi Laakh Karay Chaturai|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='cugMLTaqZTs?'>Madhur Ram Ka Naam|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='Acordc7r_SM?'>Man Re Tu Kahe|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='tz7C0MEaMfQ?'>Man Tadpat Hari|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='CB2TCCowHpA?'>Mann Lago Yaar Fakiri Mein|Abida Parveen|Bhajans</a>
+<a href='#' class='content' title='YIfJGUXPX4Y?'>Manukh Janam Dohela Hai|Shabnam Virmani|Bhajans</a>
+<a href='#' class='content' title='kJxbwHab9mI?'>Mo Ko Kaha Dhoonde Bande|Rita Karmakar|Bhajans</a>
+<a href='#' class='content' title='2ek8wZuxtvI?'>Mujhe Apni Sharan Mein|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='E9NqYbcBZOg?'>Naiya Padi Majhdaar|Mukesh|Bhajans</a>
+<a href='#' class='content' title='kbMinfmC3E0?'>O Paalanhaare|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='DR64io79HxI?'>Payo Ji Maine Ram Ratan Dhan Payo|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='yZ0_ooDAXF4?'>Pinjre Ke Panchhi Re|Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='R3y_i-DMXRo?'>Pitu Maat Sahayak|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='74RKPRqjifs?'>Piya Ghar Aaye|Shujaat Hussain|Bhajans</a>
+<a href='#' class='content' title='tDQoJJPI9lU?'>Prabhu Me Aap Hi|Mukesh|Bhajans</a>
+<a href='#' class='content' title='pPFO-gER6a4?'>Prabhu Tero Naam|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='5Q8aENcvXAI?'>Ram Ram Ram Ram|Mukesh|Bhajans</a>
+<a href='#' class='content' title='g2RsD2B1yLw?'>Samey Ka Khel Nirala|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='hMBKmQEPNzI?'>Shiva Tandava|Uma Mohan|Bhajans</a>
+<a href='#' class='content' title='IN8fQT4qJEQ?'>Sunta Hai Gur Gyani|Karan|Bhajans</a>
+<a href='#' class='content' title='2KyrnpOZ55o?'>Sunta Hai Guru Gyani|Kumar Gandharva|Bhajans</a>
+<a href='#' class='content' title='kgHXBHBdZj4?'>Sunta Hai Guru Gyani|Neeraj Aryas|Bhajans</a>
+<a href='#' class='content' title='yHCfmS8Z1HM?'>Sur Ki Gati Main|Mukesh|Bhajans</a>
+<a href='#' class='content' title='M3OCemZmhuY?'>Tera Ram Ji Karenge Beda Par|Hari Om Sharan|Bhajans</a>
+<a href='#' class='content' title='CDogHO96TIM?'>Tere Dwar Khara Bhagwan |Kavi Pradeep|Bhajans</a>
+<a href='#' class='content' title='mP53i6i_JRk?start=8&'>Tora Man Darpan Kehlaye|Asha Bhosle|Bhajans</a>
+<a href='#' class='content' title='vFSbOlivUG0?'>Tori Jai Jai Kartaar|Padmini Rao|Bhajans</a>
+<a href='#' class='content' title='fgNa41wNxyw?'>Tu Hindu Banega Na Musalman|Mohammed Rafi|Bhajans</a>
+<a href='#' class='content' title='9YGXghWx2bs?'>Tu Pyar Ka Saagar Hai|Manna Dey|Bhajans</a>
+<a href='#' class='content' title='jUmYNTvZ0h8?'>Tumhi Ho Mata|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='TubOipuqekI?'>Tumhi Mere Mandir|Lata Mangeshkar|Bhajans</a>
+<a href='#' class='content' title='TBtEA2VZbBc?'>Tune Raat Gwaie Soye Ke|Mukesh|Bhajans</a>
+<a href='#' class='content' title='zLEChD_MZnY?start=0&end=176&'>Vaari Jaun Re Balihari Jaun Re|Moora Lala, Suman Sridhar|Bhajans</a>
+<a href='#' class='content' title='dmfMXOz_RYo?'>Bhairavi Jo Bhaje Hari Ko Sada|Bhimsen Joshi|Classical_Ragas</a>
+<a href='#' class='content' title='Y9kmbdhgf44?'>Bhairvi On Sarod|Amjad Ali Khan|Classical_Ragas</a>
+<a href='#' class='content' title='g9s0ww3lsQc?'>Bharat Ek Khoj Title Song|Vanraj Bhatia, Khodus Wadia|Classical_Ragas</a>
+<a href='#' class='content' title='xwRD8xhJQ9E?'>Bhoop Tero Sukh Dukh Mein Ayo Kaam|Kiran Kamath|Classical_Ragas</a>
+<a href='#' class='content' title='0S8eh7o303s?'>Kaya Nahi Teri|Bhimsen Joshi|Classical_Ragas</a>
+<a href='#' class='content' title='C3HtzIgYVc4?'>Malhar Boondan Boondan Barse Meha|Ankita, Noor|Classical_Ragas</a>
+<a href='#' class='content' title='u9VI9wpjNaE?'>Malhar Fusion Garaj Garaj Aye|Priya Bondre, Shivani Avasarala|Classical_Ragas</a>
+<a href='#' class='content' title='Rd_20jJ2ZYY?'>Malhar Ghan Ghamand Nabh Garjat|Ajay Chakravarty|Classical_Ragas</a>
+<a href='#' class='content' title='grHr39Ej7P8?'>Malhar Jam |Harish Sivaramakrishnan|Classical_Ragas</a>
+<a href='#' class='content' title='WCAzhKd839Y?'>Mian Ki Malhar On Sarod & Tabla|Amjad Ali, Samta Prasad|Classical_Ragas</a>
+<a href='#' class='content' title='BgCpkduEQ7U?'>Mishra Pilu Thumi On Sitar|Anoushka Shankar|Classical_Ragas</a>
+<a href='#' class='content' title='BdfBypOjMxM?'>Miya ki Malhar Sound Of Rain|Ankur Dubey|Classical_Ragas</a>
+<a href='#' class='content' title='GKNzOlP-AnU?'>Miyan Malhar On Flute|Ronu Majumdar|Classical_Ragas</a>
+<a href='#' class='content' title='UTP4T4PmU3Q?'>Naam Japan Kyon Chod Diya|Bhimsen Joshi|Classical_Ragas</a>
+<a href='#' class='content' title='QVbaQviPnao?'>Puriya Dhanashri Bandish|Shafqat Hussain|Classical_Ragas</a>
+<a href='#' class='content' title='Y9XxvEbFM_o?'>Puriya Dhanashri Bandish |Avni|Classical_Ragas</a>
+<a href='#' class='content' title='sX536HTEbSI?'>Puriya Dhanashri Syam Murari|Ankita Joshi|Classical_Ragas</a>
+<a href='#' class='content' title='Gv6wjHgb6nU?'>Puriya Dhanashri Tutorial-2|Vijay Kumar|Classical_Ragas</a>
+<a href='#' class='content' title='Eak_46vUS5A?'>Puriya Dhanashri Beet Daye Jugva|Maithili Thakur|Classical_Ragas</a>
+<a href='#' class='content' title='u94yiR24IHw?'>Puriya Dhanashri Chadar Ho Gayi|Ashwini Deshpande|Classical_Ragas</a>
+<a href='#' class='content' title='OwEa85GMoU4?'>Puriya Dhanashri Din Duba Aajra|Kumar Gandharva|Classical_Ragas</a>
+<a href='#' class='content' title='3CDRa9BHImE?'>Puriya Dhanashri Fusion|Aradhana|Classical_Ragas</a>
+<a href='#' class='content' title='r04rtAiUkqg?'>Puriya Dhanashri Fusion|Bombay Twins|Classical_Ragas</a>
+<a href='#' class='content' title='cPRvfBdgA2E?'>Puriya Dhanashri Fusion|Kaafila Style|Classical_Ragas</a>
+<a href='#' class='content' title='3sXI0sR7oFw?'>Puriya Dhanashri Fusion|Penn Sargam|Classical_Ragas</a>
+<a href='#' class='content' title='mm1njgYjcww?'>Puriya Dhanashri Garba Tose Laage|Sara Raza Khan|Classical_Ragas</a>
+<a href='#' class='content' title='bx7j1SysvxY?'>Puriya Dhanashri Kahe Karat Jhootho|Devaki Pandit|Classical_Ragas</a>
+<a href='#' class='content' title='btjp7EZn9us?'>Puriya Dhanashri Khush Reh Sanam|Raga Boyz|Classical_Ragas</a>
+<a href='#' class='content' title='iMYlXUj68Lw?'>Puriya Dhanashri Mushkil Karo Aasan|Ruchi Mishra|Classical_Ragas</a>
+<a href='#' class='content' title='c4puEtYIg48?'>Puriya Dhanashri Mushkil Karo Aasan|Azmat Hussain|Classical_Ragas</a>
+<a href='#' class='content' title='33YHqprUgB4?'>Puriya Dhanashri On Carnatic Guitar|Sowmya Varada|Classical_Ragas</a>
+<a href='#' class='content' title='PxA9QYAliKQ?'>Puriya Dhanashri On Flute|Ronu Majumdar|Classical_Ragas</a>
+<a href='#' class='content' title='x8OZiHZouwU?'>Puriya Dhanashri On Flute|Ronu Majumdar|Classical_Ragas</a>
+<a href='#' class='content' title='hOs-Lc4H6bA?'>Puriya Dhanashri On Guitar|Anit Gupta|Classical_Ragas</a>
+<a href='#' class='content' title='JaJJp3XGgNI?'>Puriya Dhanashri On Santoor|Sandip Chatterjee|Classical_Ragas</a>
+<a href='#' class='content' title='cX3FFBG2UFQ?'>Puriya Dhanashri On Sitar|Anouska Shankar|Classical_Ragas</a>
+<a href='#' class='content' title='jPIl2G88w_A?'>Puriya Dhanashri On Sitar|Shahid Parvez|Classical_Ragas</a>
+<a href='#' class='content' title='Ofv3U-0IUbQ?'>Puriya Dhanashri On Sitar|Amjad Ali Khan|Classical_Ragas</a>
+<a href='#' class='content' title='Zjt0Q_i8G4M?'>Puriya Dhanashri On Sitar & Tabla|Sebastian Dreyer, Fabian Bakels|Classical_Ragas</a>
+<a href='#' class='content' title='vqrzwCODkHU?'>Puriya Dhanashri On Taus|Ranbir Singh|Classical_Ragas</a>
+<a href='#' class='content' title='XJb1_9DXUmM?'>Puriya Dhanashri Paayalia Jhankar|Rashid Khan|Classical_Ragas</a>
+<a href='#' class='content' title='oHXNjZv-3SM?'>Puriya Dhanashri Payaliya Jhankar|Nirali Kartik|Classical_Ragas</a>
+<a href='#' class='content' title='aOQSCf4bJ8c?'>Puriya Dhanashri Shyaam Murari|Sanjeev|Classical_Ragas</a>
+<a href='#' class='content' title='FOPQe8W4-Tg?'>Puriya Dhanashri Shyam Murari|Sanso|Classical_Ragas</a>
+<a href='#' class='content' title='HT91SbnWKgU?'>Puriya Dhanashri Sukun|Bhushan Gogad|Classical_Ragas</a>
+<a href='#' class='content' title='NLbtJMCClKw?'>Puriya Dhanashri Sumiran Kar Man|Girija Devi|Classical_Ragas</a>
+<a href='#' class='content' title='vb9tvgrjaYs?'>Puriya Dhanashri Tombak Fusion|Carla Cao|Classical_Ragas</a>
+<a href='#' class='content' title='aE0lKySHAAY?'>Puriya Dhanashri Tutorial-1|NCERT|Classical_Ragas</a>
+<a href='#' class='content' title='zD9GJoUKwjA?'>Raga Yaman|Mandala|Classical_Ragas</a>
+<a href='#' class='content' title='mKc3gy-SHmE?'>Ud Jayega Hans Akela|Kumar Gandharva|Classical_Ragas</a>
+<a href='#' class='content' title='JhOIXi0R3B0?'>Ek Chidiya Anek Chidiya|Bandish Projekt|Commercials</a>
+<a href='#' class='content' title='KYtgmqMuiwU?'>A Journey To Star|Lemongrass|English_Songs</a>
+<a href='#' class='content' title='QcKvJRBUE6o?'>By The Rivers Dark|Leonard Cohen|English_Songs</a>
+<a href='#' class='content' title='FGH8rnraxoE?'>Motorcycle As The Rush Comes|Jes, Gabriel, Dresden|English_Songs</a>
+<a href='#' class='content' title='ndmXkyohT1M?'>Pray For Me Brother|A.R. Rahman|English_Songs</a>
+<a href='#' class='content' title='BTCfQ6Bb8QE?'>Stand By Me|Ben E. King|English_Songs</a>
+<a href='#' class='content' title='jJp0jInkAIM?'>This Voiceless Cry|Harri Lake|English_Songs</a>
+<a href='#' class='content' title='kG60-qtfong?'>Aaj Hamare Greh Basant|Bhai Baldev Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='glKuwK5Vfws?'>Amrit Bachan Sadh Ki Bani Puriya Dhanashri|Bhai Satninder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='IQz0CXGVn-I?'>Amrit Bani Har Har|Bhai Joginder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='bHbxU1QHtEk?'>Baba Manmat Varo|Bhai Niranjan Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='cQyBhtPejcI?'>Bahut Janam Bichre|Bhai Satwinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='31DKkNd4FJ0?'>Baras Ghana Mera Pir Malhar|Bibi Gurpreet Kaur|Gurbani_Shabads</a>
+<a href='#' class='content' title='nX0DRgyBq8o?'>Barse Megh Sakhi|Bhai Ravinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='QZKlpsxLXr8?'>Birha Birha|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='X0yP-HSeqjI?'>Daras Tere Ki Pyas Man Lagi|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='ErL2rxDO10I?'>Das Tere Ki Benti|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='0mc6SnPsTlE?'>Deho Daras Sukh Dateya|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='uMYAC_P9T6s?'>Ditthe Sabhe Thaanv|Bhai Ishmeet Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='2zXn2NqWWYI?'>Dukh Bhanjan Tera Naam Ji|Bhai Ravinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='TQP1nJbqRtM?'>Dukh Par Har Sukh|Bhai Joginder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='0_d1DNbZmt4?'>Ehee Naam Hai Adhara|Bhai Jagjit Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='5S4rn7TF8c8?'>Gun Gaava Din Raat|Bhai Satvinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='ACR_HA5x7bM?'>Gur Pura Milawe Mera Pritam|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='iO6QHQJlfms?'>Guru Ka Bachan Vasei Ji Naale|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='z0euFXYp4Oo?'>Har Ke Naam Bin|Bhai Joginder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='ZQZlXy45ksM?'>Hum Ghar Sajan Aae|Bhai Harbans Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='-WqYWmymv9k?'>Je Tu Mittar Asadara|Bhai Surinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='DC-6a5fDgzg?'>Jhim Jhim Varse Amrit Dhara|Bhai Gopal Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='3XM7qehnteU?'>Jhoot Na Bol Pandey|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='KpOl0hx5ilc?'>Jin Prem Kiyo|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='q-9hSSnor0g?'>Jithe Jaye Bahe Mere Satguru|Bhai Joginder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='1c8M_xyjndc?'>Jo Supna Ar Pekhna|Bhai Satvinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='oo-Hef_JOmM?'>Kaho Pandit Soocha|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='nA6V6GUuiPQ?'>Koi Aan Milaave|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='IR1bnwkk3Yw?'>Koi Nau Na Jaanay Mera|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='mNKoIeF-VR4?'>Lakh Khushian Patshahian|Bhai Gopal Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='wKDXSBAJkdM?'>Lekha Rabb Mangesia|Bhai Chamanjit Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='FIdJBnakqBQ?'>Main Bin Gur Dekhay|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='tuu0UG_qHyM?'>Man Kyon Vairaag Karega|Bhai Ravinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='sLuaahzF2qI?'>Man Pardesi Je Thiye|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='OHd86okVFac?'>Mauli Dharati|Bhai Ravinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='oSlgJnCfYJg?'>Mere Ram Rai|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='oJZ3bTZniyc?'>Mere Satgura|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='8FAiGNaVT5s?'>Mil Mere Pritama Jio New|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='jgpYVFCC0ow?'>Mil Mere Pritama Jio Old|Bhai Surjan Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='1zKx_5J-ZHI?'>Mitra Pyaare Nu|Mohammed Rafi|Gurbani_Shabads</a>
+<a href='#' class='content' title='ZqRxhIf8Z6s?'>Mittar Pyare Nu Haal|Nusrat Fateh Ali Khan|Gurbani_Shabads</a>
+<a href='#' class='content' title='S3EL87hQVy4?'>Naam Maharas Peo|Bhai Satvinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='yQXBap0Sa_s?'>Pandey Aisa Brahm Bichar|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='ZAol19t8KvM?'>Pandia Kawan Kumat Tum Lagi|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='e87sPZLYNmw?'>Raam Daas Sarovar Naathe|Bhai Gopal Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='RNfbn_oAMrw?'>Saajan Tere Charan Ki Puriya Dhanashri|Bhai Balvir Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='XLY6owTowNc?'>Sab Gobind Hai|Bhai Maninder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='Nr3hi5fVXtY?'>Shyam Sundar Taj|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='8Mh4POGJwFw?'>Sun Sajan Pritam Meriya|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='m8yF5LpZLVY?'>Sun Sakhiye Prabh Milan|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='PO8Zt2C3Ncc?'>Taati Vao Na Lagaee|Bhai Harjinder Singh|Gurbani_Shabads</a>
+<a href='#' class='content' title='Z_ifA-4ydEU?'>Aa Laut Ke Aaja Mere Meet|Rani Ripmati, Mukesh|Hindi_Songs</a>
+<a href='#' class='content' title='diYIabcv6s4?'>Aankhen Khuli Ho Ya Band|Lata Mangeshkar|Hindi_Songs</a>
+<a href='#' class='content' title='4n4vEzDD7o8?'>Aankhon Mein Teri Ajab Si|Krishnakumar Kunnath|Hindi_Songs</a>
+<a href='#' class='content' title='nixD-9SNqb4?'>Ab Agar Aao To Jane|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='kzPLjMnXlF4?'>Ab Mujhe Raat Din|Sonu Nigam|Hindi_Songs</a>
+<a href='#' class='content' title='Q2S7CDuBTOc?'>Agar Tum Saath Ho|Jubin Nautiyal, Prakriti Kakar, Abhijit Vaghani|Hindi_Songs</a>
+<a href='#' class='content' title='QB7Mv2N1dz8?'>Aur Is Dil Mein Kya Rakha Hai|Asha Bhosle|Hindi_Songs</a>
+<a href='#' class='content' title='tviZlM4yycc?'>Aye Khuda|Kshitij Tarey, Saim, Mithoon|Hindi_Songs</a>
+<a href='#' class='content' title='hDyoDTuf0Pc?'>Bale Bale Bale Bahubali|Daler Mehndi, Maragadamani, Mounima|Hindi_Songs</a>
+<a href='#' class='content' title='Myw8OZ4sz_Q?'>Bhigi Bhigi Raaton Mein|Adnan Sami|Hindi_Songs</a>
+<a href='#' class='content' title='0Gk7pIRskio?'>Bhooli Bisri Ek Kahani|Anuradha Paudwal|Hindi_Songs</a>
+<a href='#' class='content' title='C3HtzIgYVc4?'>Boondan Boondan - Maatibaani|Ankita, Noor|Hindi_Songs</a>
+<a href='#' class='content' title='W15KUnxvZ7A?'>Breathless|Shankar Mahadevan|Hindi_Songs</a>
+<a href='#' class='content' title='MHc858_Aobw?'>Chaak Jigar Ke See|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='7VU-0ZSACsM?'>Chal Chaiyya Chaiyya|H. Sridhar, A.R. Rahman|Hindi_Songs</a>
+<a href='#' class='content' title='TSdzJvxFBn4?'>Chal Utth Bandeya|Sukhwinder Singh|Motivational_Raps</a>
+<a href='#' class='content' title='FLl1WH28yG0?'>Chale Chalo Lagaan|Srinivas, A.R. Rahman|Hindi_Songs</a>
+<a href='#' class='content' title='lC3goEQhsG8?'>Chalte Chalte Mere Yeh|Kishore Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='si5n7Or7U5s?'>Chammak Challo Ra-One|Akon|Hindi_Songs</a>
+<a href='#' class='content' title='1gukvtH_a3I?'>Chaudhary |Amit Trivedi|Hindi_Songs</a>
+<a href='#' class='content' title='GBpthAXpkSM?'>Chittiyaan Kalaiyaan|Meet Bros, Kanika Kapoor|Hindi_Songs</a>
+<a href='#' class='content' title='4kLb5lqWoz4?'>Dard E Disco|Sukhwinder Singh, Marianne, Nisha, Caralisa|Hindi_Songs</a>
+<a href='#' class='content' title='Mcs2xEZ6K8o?'>Dheere Dheere Se Meri Zindagi|Anuradha Paudwal, Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='WCQSvzcHRpY?'>Dhunki Dhunki|Neha Bhasin|Hindi_Songs</a>
+<a href='#' class='content' title='hPuOv810CP8?'>Dil Chahta Hai Title|Shankar Mahadevan|Hindi_Songs</a>
+<a href='#' class='content' title='Uv2XZ06kDlw?'>Dil Ki Kalam Se|Anuradha Paudwal, Hari Haran|Hindi_Songs</a>
+<a href='#' class='content' title='n3tR12fGsaw?'>Dil Samander|Krishnakumar Kunnath, Sunidhi Chauhan|Hindi_Songs</a>
+<a href='#' class='content' title='47Tsuz5OhBU?'>Ek Haseena Thi|Himesh Reshammiya, Shreya Ghosal|Hindi_Songs</a>
+<a href='#' class='content' title='i9yIS7TUElc?'>Ek Ladki Ko Dekha|Kumar Sanu, R.D. Burman|Hindi_Songs</a>
+<a href='#' class='content' title='-_WA4uL-_5A?'>Ek Pal Ka Jeena Kaho Na Pyar Hai|Lucky Ali|Hindi_Songs</a>
+<a href='#' class='content' title='8IXPM7KWorA?'>Ek Sanam Chahiye Aashiqui Ke Liye|Kumar Sanu, Bhushan Dua, Sameer|Hindi_Songs</a>
+<a href='#' class='content' title='qHWzN0E8wj0?'>Ekla Chalo Re|Amitabh Bachchan|Hindi_Songs</a>
+<a href='#' class='content' title='QZ2nYA5Nwk8?'>Gardish Main Ho Taare|Mukesh|Instrumental</a>
+<a href='#' class='content' title='YpREb4b3N_Q?'>Gham Ka Khazana Tera Bhi|Lata Mangeshkar, Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='Q3wiREP1_RE?'>Ghoonghat Ki Aad Se|Alka Yagnik, Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='S5iK66rnEBs?'>Gumnaam Hai Koi|Nadeem Khan|Hindi_Songs</a>
+<a href='#' class='content' title='PtPJLVqwuVc?'>Hum Laye Hain Toofan Se|Rajasree Mukherjee|Hindi_Songs</a>
+<a href='#' class='content' title='uWb-7aSnY9M?'>Ishq Bina Kya Jeena|A.R. Rahman, Sonu Nigam, Sujatha|Hindi_Songs</a>
+<a href='#' class='content' title='ecTeagAk1Dc?'>Jaane Jigar Jaane Man|Anuradha Paudwal, Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='LK3qYhzK9SM?'>Jaane Kahan Gaye Woh Din|Cover By Akash|Hindi_Songs</a>
+<a href='#' class='content' title='-7shFTSqU1g?'>Jane Kyon Log Pyaar|Udit Narayan, Alka Yagnik, Shankar-Ehsaan-Loy, Javed Akhtar|Hindi_Songs</a>
+<a href='#' class='content' title='Xwd2HBbQxpM?'>Jannatein Kahan Ballad|Pritam, Nikhil D'Souza|Hindi_Songs</a>
+<a href='#' class='content' title='F-JoqgpSsBc?'>Jay Jaykara Bahubali|Kailash Kher|Hindi_Songs</a>
+<a href='#' class='content' title='Ghk8jx1SotE?'>Jeeye To Jeeye Kaise|Kumar Sanu, S.P. Balasubramaniam|Hindi_Songs</a>
+<a href='#' class='content' title='HiJ_PMRyks8?'>Jewan Men Jane Jana|Jaspinder Narula, Harry Anand|Hindi_Songs</a>
+<a href='#' class='content' title='mG_bs463P8g?'>Judai Kamran Ahmed|Kamran Ahmed|Hindi_Songs</a>
+<a href='#' class='content' title='yQF7BLgq0uk?'>Kabhi Aisa Lagta Hai|Lucky Ali|Hindi_Songs</a>
+<a href='#' class='content' title='HIbzXaBdwZw?'>Kabhi Kabhi Aditi Zindagi|Rashid Ali|Hindi_Songs</a>
+<a href='#' class='content' title='Zk9VeqWGXeY?'>Kabhi Khamosh Baithoge|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='raiEYWp2g-I?'>Kahin Deep Jale|Lata Mangeshkar|Hindi_Songs</a>
+<a href='#' class='content' title='HGXYCcgNl8Y?'>Kahin Door Jab Din Dhal Jaye|Mukesh|Hindi_Songs</a>
+<a href='#' class='content' title='vLBS3MlekRw?'>Kamlee|Kanika Kapoor|Punjabi_Songs</a>
+<a href='#' class='content' title='dodDteh-m3Q?'>Kashmir Main Tu|Sunidhi Chauhan, Arijit Singh, Neeti Mohan|Hindi_Songs</a>
+<a href='#' class='content' title='wLCr7ZBN0is?'>Kasme Waade Pyar Wafa|Manna Dey, Kalyan Ji, Anand Ji|Hindi_Songs</a>
+<a href='#' class='content' title='pehzWarJuKk?'>Khali Dil Nahi|Alka Yagnik, Hans Raj Hans|Hindi_Songs</a>
+<a href='#' class='content' title='HJo2kuuGrs8?'>Koi Fariyaad|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='ZH1D21VZt3c?'>Koi Jaye To Le Aaye|Alka Yagnik, Shankar Maha|Hindi_Songs</a>
+<a href='#' class='content' title='3QarnZGy4VU?'>Krazzy Four|Vishal Dadlani|Hindi_Songs</a>
+<a href='#' class='content' title='6WLugDJYXmM?'>Ladki Kyon Ladkon Si|Alka Yagnik, Shaan|Hindi_Songs</a>
+<a href='#' class='content' title='vTQkB6MvKZc?'>Likhe Jo Khat Tujhe Who|Mohammed Rafi, Shankar Jaikishan|Hindi_Songs</a>
+<a href='#' class='content' title='9K6itgexJN8?'>Love Mera Hit Hit|Neeraj Shridhar, Tulsi Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='pOK08cRwE6c?'>Maa - Taare Zameen Par|Shankar Mahadevan|Hindi_Songs</a>
+<a href='#' class='content' title='XvqwRyzPXiI?'>Main Agar Kahoon/Bol Do Na Zara|Armaan Malik, Jonita Gandhi|Hindi_Songs</a>
+<a href='#' class='content' title='lmZVoOlzbxw?'>Main Duniya Bhula Doonga|Anuradha Paudwal, Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='wCMgSSQJMek?'>Main Jahaan Rahoon|Rahat Fateh Ali Khan, Krishna Beura|Hindi_Songs</a>
+<a href='#' class='content' title='oNHF3smTZtc?'>Main Tera Deewana|Udit Narayan, Kavita Krishnamurthy|Hindi_Songs</a>
+<a href='#' class='content' title='7dxeOP0GjKg?'>Maula|Ali Azmat|Hindi_Songs</a>
+<a href='#' class='content' title='i5cSVnSDs2I?'>Mere Haath Mein|Cover By Trishita|Hindi_Songs</a>
+<a href='#' class='content' title='3vPjMX17qC4?'>Mere Naina Sawan Bhadon|Kishore Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='XBM3osEj2uU?'>Meri Aahon Main Asar|Mehdi Hassan|Hindi_Songs</a>
+<a href='#' class='content' title='3oLmYtqq9X4?'>Na Tum Jano Na Hum Hindi|Lucky Ali, Ramya|Hindi_Songs</a>
+<a href='#' class='content' title='WDfCsW1MJhU?'>Naam Hai Tera|Himesh Reshammiya|Hindi_Songs</a>
+<a href='#' class='content' title='4kBLExOafhQ?'>Nafrat Ki Duniya Ko|Mohammad Rafi|Hindi_Songs</a>
+<a href='#' class='content' title='gMsUM06byw0?'>Nahin Saamne Tu|A.R. Rahman|Hindi_Songs</a>
+<a href='#' class='content' title='A4_KJ8t-dbo?'>Nazar Ke Samne|Anuradha Paudwal, Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='B4eLE3Um1jU?'>Neem Ka Ped Title|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='9jHPhM6hVmg?'>O Mere Dil Ke Chain|Kishore Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='iv7lcUkFVSc?'>O Re Piya|Rahat Fateh Ali Khan|Hindi_Songs</a>
+<a href='#' class='content' title='OssRAVZhsRk?'>O Saathi Re|Kishore Kumar, Kalyan Ji, Anand Ji|Hindi_Songs</a>
+<a href='#' class='content' title='qZgTPiuifBo?'>O Sanam|Lucky Ali|Hindi_Songs</a>
+<a href='#' class='content' title='1097-AwGT5E?'>Oh Janewale Ho Sake|Mukesh, S.D. Burman|Hindi_Songs</a>
+<a href='#' class='content' title='t8aGvh-dyS0?'>Oh Majhi Re|Kishore Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='JtAp4GnkMbE?'>Oh Oh Jane Jaana|Kamal Khan|Hindi_Songs</a>
+<a href='#' class='content' title='s3Kt97M0ANQ?'>Pankh Hote To Ud Aati Re|Lata Mangeshkar|Hindi_Songs</a>
+<a href='#' class='content' title='hHCHURktEBA?'>Phoolon Ka Taaron Ka|Kishore Kumar, R.D. Burman|Hindi_Songs</a>
+<a href='#' class='content' title='BxV9LEVsy1c?'>Piya Ghar Aavenge|Kailash Kher|Hindi_Songs</a>
+<a href='#' class='content' title='NTRPBuOa2yk?'>Pyaar Ka Pehla Khat|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='VvH35sbDbiM?'>Que Sera Sera Pukaar|Shankar Mahadevan, Kavita Krishnamurthy|Hindi_Songs</a>
+<a href='#' class='content' title='Lf5SUyCWTuM?'>Raaton Ko Uth Uthkar|Gurdas Mann|Hindi_Songs</a>
+<a href='#' class='content' title='AQiOGl54mIo?'>Ramta Jogi Taal|Sukhwinder Singh, Alka Yagnik|Hindi_Songs</a>
+<a href='#' class='content' title='KqKxcQMKf74?'>Ruk Jana Nahi Tu|Lata Mangeshkar, Kishore Kumar, Asha Bhosle|Hindi_Songs</a>
+<a href='#' class='content' title='Fri1lFxLHWA?'>Saat Samundar Paar|Sadhana Sargam|Hindi_Songs</a>
+<a href='#' class='content' title='USCDV92Nlmc?'>Sach Keh Raha Hai|Cover By Vivran Modi|Hindi_Songs</a>
+<a href='#' class='content' title='TvNHVBsL5qM?'>Puriya Dhanashri Tum Base Nahi|Sadhna|Hindi_Songs</a>
+<a href='#' class='content' title='DrwU9OgJjW8?'>Samjho Na|Himesh Reshammiya|Hindi_Songs</a>
+<a href='#' class='content' title='E3_9NrLwgEc?'>Sansar Hai Ek Nadiya|Mukesh|Hindi_Songs</a>
+<a href='#' class='content' title='9xfDW-dIN9Y?start=72&'>Saree Ke Phaal Se|Antara Mitra, Nakash Aziz|Hindi_Songs</a>
+<a href='#' class='content' title='AgxkIlTAYkQ?'>Sathi Mere Tere Bina|Kumar Sanu, Alka Yagnik|Hindi_Songs</a>
+<a href='#' class='content' title='4StSMuVyyBo?'>Sham Hone Ko Hai|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='mUX9MjBMkcA?'>Soni De Nakhre Sone|Wajid, Labh Janjua, Sneha Pant|Hindi_Songs</a>
+<a href='#' class='content' title='X1Qr6lSOChY?'>Soona Soona Raaz|Shreya Ghosal|Hindi_Songs</a>
+<a href='#' class='content' title='e6qgIAuLFz4?'>Sunn Zara/Tujhe Bhula Diya|Shaan & Shruti Pathak|Hindi_Songs</a>
+<a href='#' class='content' title='VcioF4LikME?'>Sunta Hai Mera Khuda|Udit Narayan, Kavita Krishnamurthy, Swarnalatha|Hindi_Songs</a>
+<a href='#' class='content' title='zVQaRk7Bvz0?'>Tamanna Phir Machal|Jagjit Singh|Hindi_Songs</a>
+<a href='#' class='content' title='__qkzfWhi6g?'>Tanha Dil|Shaan|Hindi_Songs</a>
+<a href='#' class='content' title='ZkwaiIGoyT4?'>Tanhayee - Dil Chahta Hai|Sonu Nigam|Hindi_Songs</a>
+<a href='#' class='content' title='zNUs54J3mKo?'>Tera Chehra|Adnan Sami|Hindi_Songs</a>
+<a href='#' class='content' title='0KNk-Joi-NM?'>Tera Ghata|Gajendra Verma|Hindi_Songs</a>
+<a href='#' class='content' title='c6BuSdEE3kU?'>Tere Bin|Atif Aslam|Hindi_Songs</a>
+<a href='#' class='content' title='zZasH6qkn8M?'>Teri Deewani|Kailash Kher|Hindi_Songs</a>
+<a href='#' class='content' title='VCTk-IUNnpc?'>Teri Meri Kahani|Himesh Reshammiya, Ranu Mondal|Hindi_Songs</a>
+<a href='#' class='content' title='8-xCwwSY-cI?'>Teri Ore|Rahat Fateh Ali Khan, Shreya Ghosal|Hindi_Songs</a>
+<a href='#' class='content' title='6Nos_H84gwo?'>Toota Toota Ek Parinda|Kailash Kher|Hindi_Songs</a>
+<a href='#' class='content' title='pgO55W28M2s?'>Tu Yaad Na Aye|Himesh Reshammiya|Hindi_Songs</a>
+<a href='#' class='content' title='J4lWQMaEPwE?'>Tujhse Naraaz Nahin Zindagi|Cover By Anju Panta|Hindi_Songs</a>
+<a href='#' class='content' title='gXttYbp6MpI?'>Tum Bin Jiya Jaye Kaise|Chitra|Hindi_Songs</a>
+<a href='#' class='content' title='-sJ3zdTSCNQ?'>Tum Dil Ki Dhadkan Mein|Kumar Sanu|Hindi_Songs</a>
+<a href='#' class='content' title='FC-yZTinOss?'>Tum Itna Jo Muskura|Shivani Bajaj|Hindi_Songs</a>
+<a href='#' class='content' title='odVptmgIcD0?'>Tum Mile To Jadoo Chha Gya|Neeraj Shridhar|Hindi_Songs</a>
+<a href='#' class='content' title='mNseXuPUwbM?'>Tum Se Hi|Mohit Chauhan|Hindi_Songs</a>
+<a href='#' class='content' title='LMpSZWT1O78?'>Tumhe Apna Banane Ki Kasam|Kumar Sanu, Bhushan Dua , Sameer|Hindi_Songs</a>
+<a href='#' class='content' title='1UMeeZ7fiuQ?'>Yeh Veeraniyan|Himesh Reshammiya|Hindi_Songs</a>
+<a href='#' class='content' title='4mZE_wJ6mmg?'>Yeh Chand Sa Roshan Chehra|Mohammed Rafi|Hindi_Songs</a>
+<a href='#' class='content' title='RAY6rXNRMbI?'>Yeh Hawa Kehti Hai Kya|Jai Walia, Sadu|Hindi_Songs</a>
+<a href='#' class='content' title='_TywOSEu8oY?'>Zindagi Ke Safar Mein Guzar Jaate|Cover By Rahul Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='6db52BxXxfQ?'>Zindagi Ki Yahi Reet Hai|Kishore Kumar|Hindi_Songs</a>
+<a href='#' class='content' title='BTkolKEPZCE?'>Zor Ka Jhatka|Daler Mehndi, Richa Sharma, Master Salim|Hindi_Songs</a>
+<a href='#' class='content' title='H9aflL9B4VM?'>A Night In Lanasia|Deepak Ram|Instrumental</a>
+<a href='#' class='content' title='Fm-7UdRBnJA?'>Alessandro Safina Diva Mea|Leo Milagres|Instrumental</a>
+<a href='#' class='content' title='KctjFfAEFhA?'>Beautiful Ethnic Music|Faran Ensemble|Instrumental</a>
+<a href='#' class='content' title='UtI3tw49CO4?'>Beauty of Rain|Sandip Chatterjee|Instrumental</a>
+<a href='#' class='content' title='3ZVmbzaDHIo?'>Calm Sleep Music|Stream Cloud Records|Instrumental</a>
+<a href='#' class='content' title='YcTCIMKeiNQ?'>Car Bass Music|French Montana|Instrumental</a>
+<a href='#' class='content' title='f9ttU7ZcqLA?'>Crystal Heart Budha Bar|Carlos Campos, David Visan|Instrumental</a>
+<a href='#' class='content' title='vuJkSY-jNbY?'>Funky Blues Solo Guitar|Alex|Instrumental</a>
+<a href='#' class='content' title='9gZxL6DCfjg?'>Funky Guitar Instrumental2|Danny James|Instrumental</a>
+<a href='#' class='content' title='PHSUNHFOst0?'>Here Comes The Rain|Rahul Sharma|Instrumental</a>
+<a href='#' class='content' title='OpU8HRlgy5I?'>Mere Naina Violin|Abhijit Mazumdar|Instrumental</a>
+<a href='#' class='content' title='Bg57C0DzDk0?'>Mysterious Gothic Piano|Bushido|Instrumental</a>
+<a href='#' class='content' title='0_W7fMSBeJg?'>Narnia Music|Harry Gregson-Williams|Instrumental</a>
+<a href='#' class='content' title='ZYvHe4pFIvE?'>Natural Sounds Of Rural India|XTREMEX Travel|Instrumental</a>
+<a href='#' class='content' title='Pn1R1fAd924?'>Kuch Na Kaho on Flute|Ronu Majumdar|Instrumental</a>
+<a href='#' class='content' title='IWtZSbjNS8s?'>Sacral Nirvana Budha Bar|Oliver Shanti|Instrumental</a>
+<a href='#' class='content' title='sPe2lX9hLys?'>Secret Love Budha Bar|Nicos Hatzopoulos|Instrumental</a>
+<a href='#' class='content' title='Y_uvMhrj6uE?'>Solitude Budha Bar|Karunesh|Instrumental</a>
+<a href='#' class='content' title='vgmWLzA868w?'>Spiral Dance Budha Bar|Tulku|Instrumental</a>
+<a href='#' class='content' title='yUGwChcuE1s?'>Tango Serenato De Schubert|Ravin|Instrumental</a>
+<a href='#' class='content' title='797qCwmtv3Y?'>To Nie Ptak Kayah|Kayah, Goran Bregovic|Instrumental</a>
+<a href='#' class='content' title='f9OUVu3Zltc?'>Tum Dil Ki Dhadkan|Manohari Singh|Instrumental</a>
+<a href='#' class='content' title='OAbFVtIRnMU?'>Vaishnav Jan Dhun Mishra Khamaj|Prasad Bhandarkar|Instrumental</a>
+<a href='#' class='content' title='-8wGJQHDkqA?'>Aad Ant Hum Hi Rahe|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='rWeQNZ6LpFk?'>Aisi Kar Kripa Satguru Ji|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='rLqYCRTRTvM?'>Ant Wele Sub Tenu|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='3Mnx92qhLAM?'>Bahut Dukh Sehne Painde Ni|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='j__jlmeiBiM?'>Beas Dera Laun Waliya|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='VCHWH_QwaJY?'>Beasa Wale Baba Ji|Bhai Baljeet Singh|Misc_Shabads</a>
+<a href='#' class='content' title='RTdk2HivIxc?'>Bela Simran Da|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='7DrIw5Tg_mg?'>Bisar Nahi Prabh Deen Dayala|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='sA8kqljuqPc?'>Char Channa Kar Rushnaie|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='Ye6UB0Zaeok?'>Charan Kamal Tere Dhoi Dhoi Peevan|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='ELY6pkzokr4?'>Darsh Guran Da Paya|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='1l5KWOOKa1s?'>Dekho Ni Ki Kar Geya Mahi|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='Xs-ty4t28WQ?'>Dil Ka Hujra Saaf Kar|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='dkXUN940VGY?'>Dil Kale Kanno Mooh Kala|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='6CoDfH9MWBg?'>Dukh Bhanjan Tera Naam|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='n65uRmJrPvs?'>Gura Di Soorat Rabb|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='EJO7fGadqKc?'>Gura Nu Dhyalai Jinde|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='iBQIwax-WEQ?'>Hari Nam Ke Hire Moti|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='6lri-1PRUDU?'>Hattian Te Payi Chandi|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='G6ot7AjS4FQ?'>Je Tu Bandeya Hai Rabb|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='TOlEIR8Sl98?'>Jee Karda Satguru Har Vele|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='XC95c6uFsGs?'>Kardo Naam Deewana|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='8krMB9iKYnA?'>Lai Ke Naam Gura Ton|Bhai Baljeet Singh|Misc_Shabads</a>
+<a href='#' class='content' title='QNb8k_imrNA?'>Maar Khich Talwaar Ansaa Nu|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='8bsgZS25DHE?'>Main Kyon Kar Java Kabe Nu|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='TAAnMZAmXhE?'>Man Mandir Tan|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='aTe2MdQIQK0?'>Mein Kyon Kar Javaan Kaabe Nu|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='orJ6r-xRIkc?'>Meri Naiyaan Laga Dijo Paar|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='6eDQaJrWJus?'>Na Pal Bichre Piya Hamse|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='jI6FuIXgD3U?'>Paltu Paras Kya Kare|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='8-RtvBcdiMc?'>Pata Daaman Hoya Purana|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='acStkNGjT_A?'>Prabhu Ji Tum Sangat Saran|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='8SAtBjZXQdM?'>Sanu Tere Milan Da Cha|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='3tzUHKUoCws?'>Satguran Ne Jahaj Banaya|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='mEGDpSRxDh0?'>Satguru Meri Suno Pukar|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='i_gB-bQrjEo?'>Sun Fariyaad Peeran Deya Peera-1|Pathi Ji|Misc_Shabads</a>
+<a href='#' class='content' title='qRPJizOgR9M?'>Sun Fariyaad Peeran Deya Peera-2|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='sOo4ya1244I?'>Tainu Satguru Vajan Mare|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='r-sgzPdZzKA?'>Ulta Kua Gagan Mein|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='YgdqDjEKpnA?'>Vishya Vich Rulya|Ashok Sanhotra|Misc_Shabads</a>
+<a href='#' class='content' title='iNS3BxEFGa4?'>Yahi Ghadi Yeh Bela|Bhai Rattan Singh|Misc_Shabads</a>
+<a href='#' class='content' title='pifFfVhW9NU?'>Dekh Payare Main Samjhaoon|Hariom Mandloi|Misc_Shabads</a>
+<a href='#' class='content' title='gquyKXBdUSw?'>Aalas Exam Motivation|Nishayar|Motivational_Raps</a>
+<a href='#' class='content' title='ryUNe3cp0ro?'>Apna Time Aayega|Ranveer Singh|Motivational_Raps</a>
+<a href='#' class='content' title='xctUcY_HpSU?'>Bas Ek Chingari Se|Arijit Singh|Motivational_Raps</a>
+<a href='#' class='content' title='pEmur_DBrwI?'>Azadi Nishayar Rap|Nishayar|Motivational_Raps</a>
+<a href='#' class='content' title='Om_RDcna-ZE?'>Believer 8d Music - Dolby Atmos|Imagine Dragons|Motivational_Raps</a>
+<a href='#' class='content' title='dDWZYPZV6Sk?'>Chill Kar|Guru Randhawa|Motivational_Raps</a>
+<a href='#' class='content' title='dGFIT9549vI?'>Early To Bed Early To Rise|Josh|Motivational_Raps</a>
+<a href='#' class='content' title='GmCn31pq8i0?'>Ghanan Ghanan Lagaan|Alka Yagnik, Udit Narayan, Sukhwinder Singh, Shankar Mahadevan & Shaan|Motivational_Raps</a>
+<a href='#' class='content' title='AqaoSR9VwBE?'>Hogi Meri Jeet|Honey Singh|Motivational_Raps</a>
+<a href='#' class='content' title='VofN1x93TG0?'>Jame Raho|Vishal Dadlani|Motivational_Raps</a>
+<a href='#' class='content' title='ctJI7pCbxAo?'>Koi Kahe Kehta Rahe|Shankar Mahadevan, Shaan, K K|Motivational_Raps</a>
+<a href='#' class='content' title='VL0tatSW4GI?'>Koi Rok Le|Raftaar|Motivational_Raps</a>
+<a href='#' class='content' title='uC3DmRfEigg?'>Mitwa - Lagaan|Alka Yagnik, Udit Narayan, Sukhwinder Singh & Srinivas|Motivational_Raps</a>
+<a href='#' class='content' title='_9g-SbcnXdk?'>Namumkin Jaisi Koi Bhi Cheez Nahi|Honey Singh|Motivational_Raps</a>
+<a href='#' class='content' title='mBoff1Bef1M?'>No Offense Raga|Artisttaan|Motivational_Raps</a>
+<a href='#' class='content' title='ho2wDEQn1p0?'>Phir Se Ud Chala|A.R. Rahman|Motivational_Raps</a>
+<a href='#' class='content' title='izKUvuxFI64?'>Roobaroo|The ADKR|Motivational_Raps</a>
+<a href='#' class='content' title='cWyI29VZCys?'>Sahara Labhde|Bohemia|Motivational_Raps</a>
+<a href='#' class='content' title='asqPwzJKmwE?'>Sapne Power Mix|Nidar|Motivational_Raps</a>
+<a href='#' class='content' title='e1ZUQoRyhi4?'>School Di Kitaab|Bohemia|Motivational_Raps</a>
+<a href='#' class='content' title='hxcyY5ELoCQ?'>Soorma Anthem Extended|Diljit Dosanjh, Shankar Ehsaan Loy, Gulzar|Motivational_Raps</a>
+<a href='#' class='content' title='5mf6lmBO_mg?'>Stand Up Panasonic|Manj Musik & Big Dhillon, Raftaar|Motivational_Raps</a>
+<a href='#' class='content' title='858lvkopFOw?'>Teri Baari Hai|Mohit Chauhan|Motivational_Raps</a>
+<a href='#' class='content' title='wp3kcWOda6k?'>Thanks A Lot Dino James|Dino James|Motivational_Raps</a>
+<a href='#' class='content' title='DzXfL-itZd0?'>Tu Chalta Jaa|Abby Viral, Rahwan|Motivational_Raps</a>
+<a href='#' class='content' title='xUn0yP4nXPc?'>Ummeed Hindi Motivational|Nishayar|Motivational_Raps</a>
+<a href='#' class='content' title='iSallxKpm8Y?'>Unstoppable|Dino James|Motivational_Raps</a>
+<a href='#' class='content' title='puKD3nkB1h4?'>Ziddi Dil|Vishal Dadlani|Motivational_Raps</a>
+<a href='#' class='content' title='Ax0G_P2dSBw?'>Zinda Bhaag Milkha Bhaag|Siddharth Mahadevan|Motivational_Raps</a>
+<a href='#' class='content' title='BKx_B1VZ2kw?'>Ae Watan Mere Watan|Sunidhi Chauhan|Patriotic</a>
+<a href='#' class='content' title='OFUtVNVrbVc?'>Aye Mere Pyare Watan|Sonu Nigam|Patriotic</a>
+<a href='#' class='content' title='Wvr8sX5-T_8?'>Aye Mere Watan Ke Logo|Lata Mangeshkar|Patriotic</a>
+<a href='#' class='content' title='kWlygAAik9E?'>De Ke Khoon Shaheeda|Ravinder Grewal|Patriotic</a>
+<a href='#' class='content' title='qwwH6PK5xk8?'>I Love My India|Kavita Krishnamurthy|Patriotic</a>
+<a href='#' class='content' title='5EDYrbe4Gf8?'>Independence Ringtone|A.R. Rahman|Patriotic</a>
+<a href='#' class='content' title='0g6J3_-lQPk?start=60'>Jis Desh Mein Ganga Behti Hai|Cover By Sonu Nigam|Patriotic</a>
+<a href='#' class='content' title='RpNjIzBEr0Q?'>Kadam Kadam Badhaye Ja|Vijay Prakash|Patriotic</a>
+<a href='#' class='content' title='s_-tthrE0Hg?'>Kandhon Se Milte Hain Kandhe|Shankar Mahadevan, Sonu Nigam, Hariharan, Roop Kumar Rathod, Kunal Ganjawala and Vijay Prakash|Patriotic</a>
+<a href='#' class='content' title='jDn2bn7_YSM?'>Maa Tujhe Salaam|A.R. Rahman|Patriotic</a>
+<a href='#' class='content' title='50yB7ZUZeKw?'>Ho Nahin Sakta|Narasimha Nayak|Hindi_Songs</a>
+<a href='#' class='content' title='vIg_5CbKM-M?start=13&'>Mera Mulak Mera Desh|Biswajit Music|Patriotic</a>
+<a href='#' class='content' title='PiKNv8ywit0?'>Mere Desh Ki Dharti|Mahendra Kapoor|Patriotic</a>
+<a href='#' class='content' title='HY-o6Po6lIE?'>Mere Dushman Mere Bhai|Hariharan|Patriotic</a>
+<a href='#' class='content' title='-jf6pwtPqCs?'>Mile Sur Mera Tumhara|Doordarshan|Patriotic</a>
+<a href='#' class='content' title='vdStmjkyihA?'>Pawan Guru Pani Pita - Guru Nanak Dev Ji|Gurleen Kaur|Patriotic</a>
+<a href='#' class='content' title='9DsNO90JhAk?'>Peer Manaawan Challiyaan|Sukhwinder Singh|Patriotic</a>
+<a href='#' class='content' title='qxDEM78mksw?'>Sabarmati Ke Sant Tune Kardiya Kamaal|Asha Bhosle, Hemant Kumar|Patriotic</a>
+<a href='#' class='content' title='JvzkymHyRG4?'>Sare Jahan Se Accha|Lata Mangeshkar|Patriotic</a>
+<a href='#' class='content' title='drlfr5Rtb1o?'>Des Rangila|Mahalaxmi Iyer|Patriotic</a>
+<a href='#' class='content' title='O-7wh5vmOf0?'>Aa Ve Mahi Tenu|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='kd-6aw99DpA?'>Aaj Fatte Chakk Lain De|Kailash Kher|Punjabi_Songs</a>
+<a href='#' class='content' title='pYFktyFC24k?'>Allarh Umar Kali|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='p06ySIO7q-w?'>Avein Rusiya Na Kar|Naseebo|Punjabi_Songs</a>
+<a href='#' class='content' title='hteAt_DgPF0?'>Babul Merian Guddian Tere Ghar|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='KLkwWofcM3k?'>Banda Singh Bahadur Vaar|Kuldeep Manak|Punjabi_Songs</a>
+<a href='#' class='content' title='5sVFLRTKAXM?'>Bandiya Tu|Rabbi Shergill|Punjabi_Songs</a>
+<a href='#' class='content' title='tEj5T_uVBjc?'>Bari Barsi |Josh|Punjabi_Songs</a>
+<a href='#' class='content' title='Bn4NszXcMNk?'>Chan Kitthan Gujari|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='8FEh1ZoNmeo?'>Chan Kitthan Gujari|Sukhwinder Singh|Punjabi_Songs</a>
+<a href='#' class='content' title='Z43rU4hnb-w?'>Chhole Chhole Chhole|Mika|Punjabi_Songs</a>
+<a href='#' class='content' title='1HGRqfEeDaM?'>Chithi Teri Aayi|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='HLvS1QDawwg?'>Chithian Saheba Jatti Ne|Kuldeep Manak|Punjabi_Songs</a>
+<a href='#' class='content' title='2dFfN1MpeKU?'>Chithiye Ni Chithiye|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='Sizwu58wkeI?'>Corona Virus Rap|Bohemia|Motivational_Raps</a>
+<a href='#' class='content' title='6UknDjQZr5E?'>Dastaan E Ishq |Ali Zafar|Punjabi_Songs</a>
+<a href='#' class='content' title='QM6r5p26FL8?'>Dil Cheez Hai Kya Jaana|Bally Sagoo|Punjabi_Songs</a>
+<a href='#' class='content' title='MDUq13v6h-A?'>Tree of Unity|Doordarshan|Patriotic</a>
+<a href='#' class='content' title='XuLTB7cI90o?'>Dil Kare|Sukhbir|Punjabi_Songs</a>
+<a href='#' class='content' title='7WZGIXNXusU?'>Dil Mar Jane Nu Ki|Nusrat Fateh Ali Khan|Punjabi_Songs</a>
+<a href='#' class='content' title='XU1AUIoyTw8?'>Dila Mereya|Kamal Heer|Punjabi_Songs</a>
+<a href='#' class='content' title='VWqRJ9UC124?'>Dildar Sadqay|Jawad Ahmad, Elizabeth Rai|Punjabi_Songs</a>
+<a href='#' class='content' title='jyLDdsoCIE8?'>Ehna Akhiyan Yaar|Harshdeep Kaur, Shahid Mallya|Punjabi_Songs</a>
+<a href='#' class='content' title='QvyqEiCTrhA?'>Ek Charkha Gali Vich|Sardool Sikandar|Punjabi_Songs</a>
+<a href='#' class='content' title='LjKteeW_HTE?'>Ek Tera Pyar|Bohemia|Punjabi_Songs</a>
+<a href='#' class='content' title='YA1fiIcEKP0?'>Gall Ban Gayi|Sahotas|Punjabi_Songs</a>
+<a href='#' class='content' title='tj9ARZlSj6g?'>Gur Nalo Ishq Mitha|Bally Sagoo|Punjabi_Songs</a>
+<a href='#' class='content' title='nBcvzEllTFc?'>Haas Hogia|Sahotas|Punjabi_Songs</a>
+<a href='#' class='content' title='vcndpC64aHk?'>Ajj Din Hashar Da|Babbu Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='h7br6NwT03Q?'>Heeriye|Sahotas|Punjabi_Songs</a>
+<a href='#' class='content' title='j52tXsEbcQM?'>Ishq Aap Bhe Awala|Meesha Shafi|Punjabi_Songs</a>
+<a href='#' class='content' title='fzA8B_UloNo?'>Ja Ja Ve Tenun Dil Ditta|Kulbir|Punjabi_Songs</a>
+<a href='#' class='content' title='1Jj8TKVATIQ?'>Jado Mainu Pyaar Naal Jaan Jaan|Balkar Sidhu|Punjabi_Songs</a>
+<a href='#' class='content' title='GcEVDrqhk8Y?'>Jag Junction Relan Da|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='ve2We-Kmk04?'>Jatt Nu Chudail Takkri|Vinaypal Buttar|Punjabi_Songs</a>
+<a href='#' class='content' title='fvjQ5Ltl9EY?'>Javee Ve Javee Kawan|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='LVx5nDcWQbg?'>Je Jatt Bigar Gya Remix|Lehmber Hussainpuri|Punjabi_Songs</a>
+<a href='#' class='content' title='lvYCPEjtwdo?'>Je Tu Bin Daseya Tur Jana Si|Gurdas Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='PlvB5-_nj3E?'>Kangna Tera Ni|Lumber, Dr Zeus|Punjabi_Songs</a>
+<a href='#' class='content' title='K7DA52KwtAM?'>Kanthe Vala|Kamal Heer|Punjabi_Songs</a>
+<a href='#' class='content' title='0_ZPYbXuKJ0?'>Kawan We Kawan Mere Mahi Nu|Babar Niazi, Javed Niazi|Classical_Ragas</a>
+<a href='#' class='content' title='zwWOXvOOvmk?'>Kehnde Ne Naina|Harbhajan Shera|Punjabi_Songs</a>
+<a href='#' class='content' title='kkRQ1hNfJJk?'>Khat Mod Ke Kehni Aein|Harbhajan Shera|Punjabi_Songs</a>
+<a href='#' class='content' title='KfP8UFsNPYc?'>Kinara Mera Gham|Babbu Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='bMprjTwSnWA?'>Kudiye Kismat|Gurdas Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='Z2jbxVFMFgY?'>Laggiwale Nu|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='MS55Ke6AQTc?'>Laung Da Lashkara|Mahalakshmi Iyer, Hard Kaur|Punjabi_Songs</a>
+<a href='#' class='content' title='PPNOFFRoT-8?'>Long Gavaiyan|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='vA6z9KaWXjY?'>Maavan|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='1Ka3ipCMnr0?'>Mahi Mahi Dil Mera|Atif Aslam|Punjabi_Songs</a>
+<a href='#' class='content' title='vH9C0mRShlo?'>Mere Dil Vich Tera Ghar|Babbu Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='cFeAnBqWUII?'>Mere Shounk Da Nahi Etbaar|Ghulam Ali|Classical_Ragas</a>
+<a href='#' class='content' title='AI1g_UgTifo?'>Mirza Sahiba|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='0UIewfQiXZE?'>Mout Di Kali|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='f0ePePG-ZBw?'>Nach Lai|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='pb6TKLYwOtc?'>Nazran Miliyan|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='BO3UqBfaLTk?'>Oh Carol|Stereonation|Punjabi_Songs</a>
+<a href='#' class='content' title='BTMxMPyGYbo?'>Paani Panjan Daryawan Wala|Satinder Sartaj|Punjabi_Songs</a>
+<a href='#' class='content' title='IIcm-u6kjMI?'>Pata Ni Rab Kehdeyan|Jaspinder Narula, Firoz Khan, Kamal Khan, Sukhbir|Punjabi_Songs</a>
+<a href='#' class='content' title='MNSZciPUpL4?'>Pata Ni Rabb|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='YVUjyM3h8Jg?'>Peerh|Master Saleem|Punjabi_Songs</a>
+<a href='#' class='content' title='yTi5sEijT7M?'>Phullan Diye Kachiye|Sardool Sikandar|Punjabi_Songs</a>
+<a href='#' class='content' title='2-Z0u-7IMqM?'>Raaz Diyan Gallan|Gurmit Singh, Mohd. Irshad|Punjabi_Songs</a>
+<a href='#' class='content' title='QIJtqBCfAEs?'>Rang Kala Ho Gya|Mukhtar Sahota|Punjabi_Songs</a>
+<a href='#' class='content' title='h-PeiUEmmUQ?'>12 Saal|Bilal Saeed|Punjabi_Songs</a>
+<a href='#' class='content' title='mei0-J1uQ2Q?'>Ruh Lai Geya Dil|Ghulam Ali|Punjabi_Songs</a>
+<a href='#' class='content' title='HckyGnbWoDQ?'>Sadi Gali|Lehmber Hussainpuri|Punjabi_Songs</a>
+<a href='#' class='content' title='1AdCl3j2dxk?'>Sajjan Diyan Akhiyan|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='x0_neVzQq4I?'>Sajjna Ve Sajjna|Gurdas Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='XV5oQGYzB9I?'>Sara Sara Din Tere Bin|Master Saleem|Punjabi_Songs</a>
+<a href='#' class='content' title='0GLYKYgSE0Y?'>Sayonee - Chain Ik Pal Nahi|Junoon|Punjabi_Songs</a>
+<a href='#' class='content' title='WAhwKIPRhRE?'>Shaman Payian|Rahat Fateh Ali Khan|Punjabi_Songs</a>
+<a href='#' class='content' title='D9nTWtz3VA0?'>Shaman Payina Tere Bina|Nusrat Fateh Ali Khan|Punjabi_Songs</a>
+<a href='#' class='content' title='Hr3jZgukT0A?'>Sohneyo Narazgi Te Nahi|Soni Pabla|Punjabi_Songs</a>
+<a href='#' class='content' title='FNPcwUBRAF4?'>Sohni Laggdi|Sajjad Ali|Punjabi_Songs</a>
+<a href='#' class='content' title='_JsPuraTuzw?'>Sun Soniye Ni Sanu|Nitin Bali|Punjabi_Songs</a>
+<a href='#' class='content' title='DZpnJvwp6N8?'>Surma Tera Kehar|Jazzy B|Punjabi_Songs</a>
+<a href='#' class='content' title='EHs9h9V9Ztc?start=90&'>Har Charkhe De Gere|Gursewak Mann,Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='nowuiJPlYew?'>Tere Bin Nahi Laggda Dil|Nusrat Fateh Ali Khan|Punjabi_Songs</a>
+<a href='#' class='content' title='94LtxDFOHG0?'>Tere Bin|Rabbi Shergill|Punjabi_Songs</a>
+<a href='#' class='content' title='ykPX43v8zj4?'>Tere Walan Vichla Cheer|Harbhajan Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='jBQNHOC474s?'>Teriyaan Tu Jaane|Amit Trivedi, Harshdeep Kaur, Jyoti Nooran|Punjabi_Songs</a>
+<a href='#' class='content' title='WFMVaigeOn4?'>Touch Wood|Babbu Mann|Punjabi_Songs</a>
+<a href='#' class='content' title='yUW43PtNAic?'>Tu Hi Tu|Amrinder Gill, Sukhshinder Shinda|Punjabi_Songs</a>
+<a href='#' class='content' title='_QqIpsRz5lg?'>Tu Judaa|Amrinder Gill|Punjabi_Songs</a>
+<a href='#' class='content' title='GUAH-pehl1U?'>Yaaraan Di Yaari|Sahotas|Punjabi_Songs</a>
+<a href='#' class='content' title='5qUhGvNoQ7g?'>Ab Lagan Lagi Ki Kariye|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='SKJa0-4P8hw?'>Ab Lagan Lagi Ki Kariye|Pooja Goswami|Classical_Ragas</a>
+<a href='#' class='content' title='LiU6DEYlJMI?start=58&end=300&'>Kadi Aa Mil Sanwal Yaar Ve|Kamal Khan|Sufi</a>
+<a href='#' class='content' title='Po8jB_eL_WI?start=3&end=372&'>Kande Utte Meherma Ve|Diljaan|Sufi</a>
+<a href='#' class='content' title='JpmjFcy6Jt4?start=15&end=216&'>Mere Dil Vichon Uthadi|Satinder|Sufi</a>
+<a href='#' class='content' title='HhSyguy4G7w?'>Tujhko Kyun Dhondoo|Pooja Goswami|Sufi</a>
+<a href='#' class='content' title='ma-VYuEcyB0?'>Sun Charkhe Di Mithi Mithi|Master Saleem|Sufi</a>
+<a href='#' class='content' title='zVXJRqku7SQ?'>Tere Ishq Nachaya|Pooja Gaitonde|Sufi</a>
+<a href='#' class='content' title='_6Fnb35KIpM?start=3&end=252&'>Sun Charkhe Di Mithi Mithi|Nand|Sufi</a>
+<a href='#' class='content' title='L6suBbD0l34?'>Alf Allah Chanbe Di Booti|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='IV-OaQnIRsc?'>Bullah Ki Jana Main Kaun|Shahbaaz Khan|Sufi</a>
+<a href='#' class='content' title='gbpdE8n_QWo?'>Bullah Ki Jann Main Kaun|Rabbi Shergill|Sufi</a>
+<a href='#' class='content' title='9uDXsAtRwow?'>Chal Buleya Chal|Ali Zafar, Yaami Gautam, Anupam Kher|Sufi</a>
+<a href='#' class='content' title='Q-jbfFt2pGU?'>Char Channa Te Kar Rushnaee|Bazubane Bahu|Sufi</a>
+<a href='#' class='content' title='zSzhlu1oG04?'>Cheena Enj Chadinda Yaar|Pathane Khan|Sufi</a>
+<a href='#' class='content' title='pIZG91frg8E?'>Ek Nukte Wich Gal Mukdi E|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='rHgucW88IPo?'>Ghoom Charakhreya|Pathaney Khan|Sufi</a>
+<a href='#' class='content' title='QqkqAj76euw?'>Ghoonghat Ohle Na Luk Sajna|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='3V37zA_yOlM?'>Ghunghat Chak Lai Sajna Ve|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='KYgZCb5JW3M?'>Gin Gin Tare Langdian Ratan|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='mj_RHBEJyLI?'>Hun Mainu Kaun Pichhane|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='A2ioq-f0xG8?'>Ibadat Kar Ibadat De Naal|Satinder Sartaj|Sufi</a>
+<a href='#' class='content' title='QLf2ewlaLMA?'>Ishq Di Booti|Abrar-ul-Haq|Sufi</a>
+<a href='#' class='content' title='BUVM6H7pT00?'>Ishq Nachaya|Jasbir Jassi|Sufi</a>
+<a href='#' class='content' title='cO5m66tSBC8?'>Je Tu Rab Nu Manana|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='BwlBbppAFsU?'>Jo Rang Rangeya Goorha|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='0NkQMLvyRkk?'>Kalam-E-Bahoo|Iqbal Bahoo|Sufi</a>
+<a href='#' class='content' title='cIYqzoa3tww?'>Yadan Vichre Sajan Diyan Aaiyan|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='KI6_Ed359og?'>Kande Utte Meherma Ve|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='Nz-yyk63OmM?start=10&'>Kiven Mukhre To Najran|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='rR-IsTEEbKQ?'>Laggi Waliyan Nu Neend Nai Ondi|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='L-9s4nTLSdA?'>Madari Madari Madari|Vishal Dadlani, Sonu Kakkar|Sufi</a>
+<a href='#' class='content' title='sM96x1bSx2g?'>Mahi Ve Mahi Ve|Josh, Shafqat Amanat Ali|Sufi</a>
+<a href='#' class='content' title='z1e5oqax4t8?'>Mahi Yaar Di Gharoli|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='Tl6MradT-Rs?'>Main Neevan Mera Murshad|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='OvFEXUHrP9A?'>Main Tere Qurban|Ghulam Ali|Sufi</a>
+<a href='#' class='content' title='nzX0gTrWqQk?'>Main Teri Ho Mukki|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='wlZuaGLJ-64?'>Mara Sohna Sajan Ghar Aya|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='URQN0Vn8Cuk?'>Maula Ji|Satinder Sartaj|Sufi</a>
+<a href='#' class='content' title='9xxolC8SSJI?'>Sanwal Mor Moharan|Asad Abbas|Sufi</a>
+<a href='#' class='content' title='d7r8ldcirYQ?'>Sanwal Mor Moharan|Latif Ali Khan|Sufi</a>
+<a href='#' class='content' title='LocMnI6ExXw?'>Sanwal Rangiye Badliye Aaja|Lakhwinder Wadali|Sufi</a>
+<a href='#' class='content' title='hvk3aEHOz4M?'>Meda Dil Ranjhan Rawal|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='6g_tJGs2nqI?'>Menda Ishq Vi Tu|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='ai8aCNnt1vQ?'>Charkhe De Har Har Gede|Master Saleem|Sufi</a>
+<a href='#' class='content' title='R0CQykgJIPw?'>Charkhe De Har Har Gede|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='ZhgHkPK7ydA?'>Mera Eh Charkha|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='y8qU0VcbhBY?'>Charkha Nolakha|Atif Aslam, Qayaas|Sufi</a>
+<a href='#' class='content' title='39VfL9NOdYY?'>Mera Eh Charkha Rahat|Rahat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='mOAF6CN5uC4?'>Pyar Akhian De Buhe Te|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='XaII05SfX9E?'>Mere Ghar Aya Piya|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='XxH5wQtWZqQ?'>Na Raindee Hai|Arieb Azhar|Sufi</a>
+<a href='#' class='content' title='8leXuVZdkiY?'>Rabba Mere Haal Da|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='KmErtNSs5ak?'>Rang Ja Apne Hi Rang Tu/Bol Hu|Adnan, Hadiya|Sufi</a>
+<a href='#' class='content' title='hPiSaaLDhrA?'>Rang Laaga|Sajjad Ali|Sufi</a>
+<a href='#' class='content' title='Kpczer35yBQ?'>Rang Laaga|Sanam Marvi, Sajjad Ali|Sufi</a>
+<a href='#' class='content' title='AtSawbSypa8?'>Kaise Chhupaun Raaz E Gham|Muhammad Zubair|Classical_Ragas</a>
+<a href='#' class='content' title='GDajFNnwqp8?'>Ranjha Jogra Ban Aaya New|Ghulam Ali|Sufi</a>
+<a href='#' class='content' title='KfBPr38OBDY?'>Ranjha Jogra Ban Aaya Old|Ghulam Ali|Sufi</a>
+<a href='#' class='content' title='rcOSorn3zcg?'>Ranjha Ranjha Kardi Ni Main|Amanat Ali|Sufi</a>
+<a href='#' class='content' title='2YUOaZaPfVY?'>Sade Wal Mukhra Mor|Shahida Parveen|Sufi</a>
+<a href='#' class='content' title='pr819o1SswI?'>Sajjan De Hath Dor|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='BpDkFjuXLLw?'>Sanoon Ishq Laga Hai|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='ru-LDPfVWZQ?'>Shah Hussain Kalaam|Ghulam Hussain Nadeem|Sufi</a>
+<a href='#' class='content' title='fxUdwjgiUCI?'>Sheher Sunsaan Hai|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='cCy7zTbeXMQ?'>Sikh Chajj Koi Yaar|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='qScjqCUBAZw?'>Sun Charkhe Di Mithi Mithi|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='UOli41m691Q?'>Teri Deed Da Mainu Cha Sajjana|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='AvUduVgbn1A?'>Teri Deed Baajhon|Satinder Sartaj|Sufi</a>
+<a href='#' class='content' title='oRjfa__IHa4?'>Tu Ishq Di Ni Gall Janda|Ahmed Hassan Akhtar|Sufi</a>
+<a href='#' class='content' title='RIpZUke166M?'>Tu Ne Deewana Banaya|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='Aavn14m3VII?'>Turia Turia Ja Farida|Nusrat Fateh Ali Khan|Sufi</a>
+<a href='#' class='content' title='XMYCw3wQR_8?'>Tusi Uch Shareef De|Sajjad Ali|Sufi</a>
+<a href='#' class='content' title='-Nbm1vFsr7Q?'>Uddi Ja Uddi Ja|Mohsin Abbas Haider|Sufi</a>
+<a href='#' class='content' title='CHeZAtt6Hdk?'>Yaar Ko Hamne Ja Baja Dekha|Abida Parveen|Sufi</a>
+<a href='#' class='content' title='O6FNcjUs0YI?'>Maari Rowdy Baby|Dhanush, M. M. Manasi|Telgu_Songs</a>
+<a href='#' class='content' title='70ECiNqbsEM?'>Nuvvele Nuvvele|Shweta Mohan|Telgu_Songs</a>
+<a href='#' class='content' title='YppGjVkEUE8?'>Veede Veede|Kailash Kher|Telgu_Songs</a>
+
+</ul>
+
+
+<div id='vidSec'>
+<!--
+<iframe id='vidFrame' src='https://www.youtube.com/embed/HeUg2ZHV6Wc?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen data-autoplay data-keepplaying'></iframe>
+-->
+</div>
+
+<div style='position:fixed;z-index:2;display:block;background:orangered;color:white;height:25pt;width:100%;bottom:0pt;text-align:center;padding-top:7pt;'>
+<span id='covidTips' style='font-weight:700;'>Covid-19 Protection Tips</span>
+</div>
+
+
+<script>
+$( document ).ready(function() {
+	$('#theList').css('max-height',(window.innerHeight - 100) ); 
+	//----Hide list-----//
+	$('.content').hide(250); 
+	
+	//----Setting Dimensions Function-----//
+	function setDimensions(){
+		if( window.innerWidth > window.innerHeight ){
+			var scW = (window.innerWidth)*(70/100); 
+			var scH = scW*(56.25/100); 
+			$('#vidFrame').width( scW ); 
+			$('#vidFrame').height( scH );
+		}
+		else {
+			var scW = (window.innerWidth); 
+			var scH = scW*(56.25/100); 
+			$('#vidFrame').width( scW ); 
+			$('#vidFrame').height( scH );
+		}
+	}
+	
+	//----Bind search events-----//
+	$('#goButton').on('click',function(e){
+		$('.offer').hide(250); 
+		var searchTerm = $('#search').val().toLowerCase().trim(); 
+		
+		var listItems = $('.content'); 
+		var listLen = listItems.length; 
+		var i = 0; 
+		for(i; i < listLen; i++){
+			if( listItems[i].innerText.toLowerCase().trim().indexOf(searchTerm) >= 0){
+				
+				if( listItems[i].innerText.indexOf('|') >= 0 ){
+					var splittedList = listItems[i].innerText.split("|"); 
+					$('.content').eq(i).html("<span style='font-weight:700;'>" + splittedList[0] + "</span><br><span style='color:indigo;'>Artists:" + splittedList[1] + "</span><br><span style='color:darkred;'>Category: " + splittedList[2] + "</span><br><span style='display:inline-block;padding:3pt;background:darkgreen;color:white;text-align:center;width:50pt;height:18pt;margin-top:3pt;'>Play</span>"); 
+				}
+				
+				$('.content').eq(i).show(); 
+			}
+			else {
+				$('.content').eq(i).hide(); 
+			}
+		}
+		
+	});
+	
+	//----Toggle Video/List-----//
+	$('#search').on('focus',function(e){
+		//$('#vidSec').hide(500); 
+	}); 
+	$('#search').on('blur',function(e){
+		$('.content').hide(500); 
+		$('#vidSec').show(500); 
+	}); 
+	
+	//----Load Video----//
+	$('#theList a').on('click',function(e){
+		$('.content').hide(500); 
+		$('#vidSec').html("<iframe id='vidFrame' src='https://www.youtube.com/embed/" + $(this).attr('title') +"rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen data-autoplay data-keepplaying'></iframe>"); 
+		setDimensions();
+	});
+	
+	//---Handle Covid Tips---//
+	var counter = 0; 
+	setInterval(function(){
+		var msgs = [
+		"Corona Helpline +91-11-23978046 or 1075",
+		"Stay Inside Your Home", 
+		"Pray to The Creator", 
+		"Wash Your Hands Often", 
+		"Cough/Sneeze into Elbow",
+		"Don't Youch Your Face",
+		"Keep Safe Distance",
+		"Don't Hoard Unnecessarily",
+		"Don't Believe/Spread Rumors",
+		"Spend Quality Time with Family",
+		"Avoid Careless Injuries",
+		"Keep Yourself Hydrated",
+		"Avoid Stale, Heavy and Fried Food",
+		"Gargling With 1.5% Warm Salt Solution",
+		"Overeating Weakens Immunity",
+		"Sound Sleep Strengthens Immunity",
+		"Do Yoga/Light Exercise Regularly",
+		"Entertain Children Without Screens",
+		"Listen News Thrice Daily",
+		"Avoid Self Medication",
+		"Don't Ignore Flu Symptoms",
+		"Respect The Global Lockdown",
+		"Help The Poor/Needy",
+		"Donate into Relief Funds",
+		"Wear Mask If Need To Go Out"
+		]; 
+		
+		var txt = ''; 
+		if( counter < msgs.length ) {
+			txt = msgs[counter]; 
+		}
+		else{
+			txt = "Covid-19 Protection Tips"; 
+			counter = 0; 			
+		}
+		
+		$("#covidTips").animate({
+            opacity: 0
+        }, 500, function() {
+            $("#covidTips").text( txt ).animate({
+                opacity: 1
+            }, 500);
+        });
+		
+		counter++; 
+	}, 5000); 
+	
+	
+	//---Playlist Selection Handler---//
+	$('#playlists').on('change', function (e) {
+		$('.offer').hide(250); 
+		var optionSelected = $("option:selected", this);
+		var searchTerm = this.value.toLowerCase().trim();
+		
+		var listItems = $('.content'); 
+		var listLen = listItems.length; 
+		var k = 0; 
+		for(k; k < listLen; k++){
+			if( listItems[k].innerText.toLowerCase().trim().indexOf(searchTerm) >= 0){
+			
+				if( listItems[k].innerText.indexOf('|') >= 0 ){
+					var splittedList = listItems[k].innerText.split("|"); 
+					$('.content').eq(k).html("<span style='font-weight:700;'>" + splittedList[0] + "</span><br><span style='color:indigo;'>Artists:" + splittedList[1] + "</span><br><span style='color:darkred;'>Category: " + splittedList[2] + "</span><br><span style='display:inline-block;padding:3pt;background:darkgreen;color:white;text-align:center;width:50pt;height:18pt;margin-top:3pt;'>Play</span>"); 
+				}
+				
+				$('.content').eq(k).show(); 
+			}
+			else {
+				$('.content').eq(k).hide(); 
+			}
+		}
+		
+		$("#playlists").val('Select'); 
+		
+	});
+	
+	//---Close Menu Handler----//
+	$('#closeMenu').on('click',function(e){
+		$('.content').hide(250); 
+	});
+	
+}); 
+
+</script>
+</body>
+</html>
+aryan.html
+Displaying aryan.html.
