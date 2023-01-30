@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <html>
   <body>
@@ -16,21 +17,29 @@
 <script src="https://www.youtube.com/iframe_api"></script>
 
 <script>
+  
   function onYouTubeIframeAPIReady(){var e=document.getElementById("youtube-audio"),t=document.createElement("img");t.setAttribute("id","youtube-icon"),t.style.cssText="cursor:pointer;cursor:hand",e.appendChild(t);var a=document.createElement("div");a.setAttribute("id","youtube-player"),e.appendChild(a);var o=function(e){var a=e?"IDzX9gL.png":"quyUPXN.png";t.setAttribute("src","https://i.imgur.com/"+a)};e.onclick=function(){r.getPlayerState()===YT.PlayerState.PLAYING||r.getPlayerState()===YT.PlayerState.BUFFERING?(r.pauseVideo(),o(!1)):(r.playVideo(),o(!0))};var r=new YT.Player("youtube-player",{height:"0",width:"0",videoId:e.dataset.video,playerVars:{autoplay:e.dataset.autoplay,loop:e.dataset.loop},events:{onReady:function(e){r.setPlaybackQuality("small"),o(r.getPlayerState()!==YT.PlayerState.CUED)},onStateChange:function(e){e.data===YT.PlayerState.ENDED&&o(!1)}}})
   //window.onblur=function(){ r.playVideo() }
   //window.onfocus=function(){ r.playVideo() }
   //this.top.location !== this.location && (this.top.location = this.location); 
   this.onblur=function(){
-    this.top.location !== this.location && (this.top.location = this.location); 
-    r.playVideo(); 
+    //r.pauseVideo(); 
   }; 
-  this.onfocusout=function(){
+  this.onfocus=function(){
     this.top.location !== this.location && (this.top.location = this.location); 
-    r.playVideo(); 
+    //r.playVideo(); 
   }; 
+
+  document.addEventListener('visibilitychange', function (event) {
+      if (document.hidden) {
+        r.playVideo(); 
+      } else {
+        r.playVideo(); 
+      }
+  })
+
   }
 
-  
 </script>
 
 </body>
