@@ -1,0 +1,262 @@
+x cv                                                                                                                                        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.js"></script>
+    <style id="hwUpdater"></style>
+    <title>Test</title>
+    <link rel="stylesheet" href="css/fa.css">
+    <style>
+        * {
+            margin:0; outline:none; padding:0; list-style:none; font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif; text-decoration:none; 
+        }
+        a{color:black;}
+        .block{display:block} .inline{display:inline} .inlineBlock{display:inline-block} 
+        .flex{display:flex; flex-direction:row; justify-content:space-around; } 
+
+        .flexRight{display:flex; flex-direction:row; justify-content:right;} .flexLeft{display:flex; flex-direction:row; justify-content:left;} 
+        .flexDown{display:flex; flex-direction:column; justify-content:down;} 
+        .alignCenter{text-align:center; } .alignLeft{text-align:left; } .alignRight{text-align:right; }
+        .alignTop{vertical-align:top;} .alignMiddle{vertical-align:middle;} .alignBottom{vertical-align:bottom;}
+        .padding{padding:5pt; } .paddingLeft{padding-left:5pt;} .paddingTop{padding-top:5pt;} .paddingRight{padding-right:5pt;} .paddingBottom{padding-bottom:5pt;}
+        .marginLeft{margin-left:5pt;} .marginTop{margin-top:5pt;} .marginRight{margin-right:5pt;} .marginBottom{margin-bottom:5pt;}
+        .tinyText{font-size:0.80rem;} .smallText{font-size:0.90rem;} .text{font-size:1.05rem;} .h4{font-size:1.15rem;} .h3{font-size:1.25rem;} .h2{font-size:1.35rem;} .h1{font-size:1.45rem;}
+        .fade1{opacity:0.10} .fade2{opacity:0.20} .fade3{opacity:0.30} .fade4{opacity:0.40} .fade5{opacity:0.50}
+        .fade6{opacity:0.60} .fade7{opacity:0.70} .fade8{opacity:0.80} .fade9{opacity:0.90} .fade95{opacity:0.95} .fade100{opacity:1}
+        .black{color:black} .white{color:white} .whitesmoke{color:whitesmoke} 
+        .bold{font-weight:700;}
+
+
+        
+        #dimmer{position:fixed; top:0; height:100vh; width:100%; width:100dvw; background:black; opacity:0.75;}
+        #main{ background:transparent; max-width:var(--sw); min-height:100vh; font-size:calc(100vh * 2.5/100); }
+        /*
+        header{ position:fixed; z-index:3; top:0; width:var(--sw); background:black; }
+        */
+        #article{ position:absolute; z-index:1; top:0; height:auto; max-height:auto; width:var(--sw); }
+        #content{ background:transparent; min-height:95vh; }
+        /*
+        #footer{ min-height:100px; height:auto; width:var(--sw); background:gainsboro; padding-top:10pt; padding-top:10pt; font-size:1.05rem; }
+        */
+
+        #lang, #mood{width:25%; height:25pt; font-size:0.95rem; }
+        #search{width:47%; height:25pt; font-size:1.25rem; }
+        @media only screen and (orientation: portrait) {
+            body{ background:black; background-image: url( 'img/mobile.jpg' ); background-repeat: repeat; }
+            #songsList{height:auto; overflow:hidden; background:darkslategray; }
+            #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
+            #screen iframe{width:100%; height:30vh; background:black;}
+            /*
+            header{ height:calc(var(--sh)*6/100); }
+            #article{ padding-top:calc(var(--sh)*6/100); }
+            */ 
+        }
+        @media only screen and (orientation: landscape) {
+            body{ background:black; background-image: url( 'img/desktop.jpg' ); background-repeat: repeat; }
+            #songsList{height:auto; overflow:hidden; background:transparent;}
+            #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
+            #screen iframe{width:100%; height:50vh; background:black;}
+            #main{ margin-left:var(--lm); }
+            /*
+            header{ height:calc(var(--sw)*6/100); }
+            #article{ padding-top:calc(var(--sw)*6/100); }
+            */
+        }
+    </style>
+</head>
+<body>
+    <div id="dimmer"></div>
+    <div id="main">
+        <!--<header class="flex"></header>-->
+        <div id="article">
+            <div id="content">
+                <div id="screen" class="flexDown" style="background:black; text-align:center;">
+                    <iframe id="player" src="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen data-autoplay data-keepplaying" frameborder='0' style="z-index:2; border:0; outline:none;"></iframe>
+                </div>
+                
+                <video id="rain" autoplay muted loop plays-inline style="position:fixed; z-index:10; top:0; background:black;">
+                    <source src="vid/sample.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <select id="lang">
+                    <option value="All Languages" selected="selected">All Languages</option>
+                    <option value="Punjabi">Punjabi</option>
+                    <option value="Hindi">Hindi</option>
+                </select>
+
+                <select id="mood">
+                    <option value="All Moods" selected="selected">All Moods</option>
+                    <option value="Motivational">Motivational</option>
+                    <option value="Romantic">Romantic</option>
+                </select>
+
+                <input type="text" id="search" placeholder="search..." autocomplete="off" />
+
+                <ul id="songsList">
+                    <li class="songs" title="Paar Chana De_Shilpa Rao & Noori_Hindi_Motivational_a_https://www.youtube.com/embed/TrPvQvbp3Cg?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=6&end=">&#x23f5; Paar Chana De</li>
+                    <li class="songs" title="Kitt Vall Nu_Chamkaur Singh Sekhon_Punjabi_Romantic_v_https://www.youtube.com/embed/guB5r7gD-hM?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=0&end=">&#x23f5; Kitt Vall Nu</li>
+
+                
+                </ul>
+
+            </div>
+            <!--
+            <div id="footer">
+                <div class="flex">
+                    <a>Copyright</a>
+                    <a>Privacy</a>
+                    <a>Terms</a>
+                </div><br>
+                <div class="alignCenter smallText">&copy; 2024 Mishran</div><br>
+                <em class="flexRight paddingRight tinyText fade6">developed by: drugs.watch@gmail.com</em>
+            </div>
+        -->
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(){
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+            height: '390',
+            width: '640',
+            videoId: '4P6rpn9FjRE',
+            playerVars: {
+                'playsinline': 1
+            },
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+            });
+        }
+        
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 6000);
+                done = true;
+            }
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+
+        $("#pauseVideo").on("click",function(){
+            player.pauseVideo(); 
+        })
+    });
+
+    
+
+    $(".songs").on("click",function(e){
+        $(".songs").css({"background":"gainsboro"}); 
+        $(this).css({"background":"#999999"}); 
+        let parts = $(this).attr("title").split("_"); 
+        
+        if(parts[4].includes("a")){
+            //$("#lang").offset().top
+            
+            $("iframe").css({"display":"block"}); 
+            $("#rain").css({"display":"block"}); 
+            $("iframe").attr("src", parts[5]); 
+            
+        }else{
+            $("#rain").css({"display":"none"}); 
+            $("iframe").css({"display":"block"}); 
+            $("iframe").attr("src", parts[5]); 
+        }
+        //$("iframe").attr("src", parts[4]); 
+    }); 
+
+    $('#lang').change(function(e){
+        let selectedOption = $(this).val(); 
+        if( $(this).val().includes("All Languages")){
+            for(var i = 0; i < $(".songs").length; i++){
+                $(".songs").eq(i).show(); 
+            }
+        }else{
+            for(var i = 0; i < $(".songs").length; i++){
+                if( $(".songs").eq(i).attr("title").includes($(this).val()) ){
+                    $(".songs").eq(i).show();  
+                }else{
+                    $(".songs").eq(i).hide(); 
+                }
+            }
+        }
+    }); 
+
+    $('#mood').change(function(e){
+        let selectedOption = $(this).val(); 
+        if( $(this).val().includes("All Moods")){
+            for(var i = 0; i < $(".songs").length; i++){
+                $(".songs").eq(i).show(); 
+            }
+        }else{
+            for(var i = 0; i < $(".songs").length; i++){
+                if( $(".songs").eq(i).attr("title").includes($(this).val()) ){
+                    $(".songs").eq(i).show();  
+                }else{
+                    $(".songs").eq(i).hide(); 
+                }
+            }
+        }
+    }); 
+
+    $("#search").on("keyup", function(e){
+        if($(this).val().length > 0){
+            for(var k = 0; k < $(".songs").length; k++){
+                if( $(".songs").eq(k).attr("title").toLowerCase().includes($(this).val().toLowerCase()) ){
+                    $(".songs").eq(k).show(); 
+                }else{
+                    $(".songs").eq(k).hide(); 
+                }
+            }
+        }else{
+            $(".songs").show(); 
+        }
+    }); 
+
+    function adjustHeight(){
+        let ht = 0; let wd = 0; let ml = 0; 
+
+        if( $(window).innerHeight() > $(window).innerWidth() ){
+            //-----Portrait-------//
+            ht = $(window).innerHeight(); 
+            wd = $(window).innerWidth(); 
+            //$("#content").text( wd/ht ); 
+        }else{
+            //-----Landscape-------// 
+            ht = $(window).innerWidth(); 
+            wd = $(window).innerHeight(); 
+            //$("#content").text( wd/ht ); 
+            ml = ( $(window).innerWidth() - $(window).innerHeight() ) / 2; 
+        }
+        $("#hwUpdater").text( ':root{ --lm:' + ml + 'px; --sh:' + ht + 'px; --sw:' + wd + 'px}' ); 
+    }
+
+    adjustHeight(); 
+    $("#screen").css( {"min-width":$("#content").width(), "min-height":$("#content").width()*50/100} );
+    $("#rain").css( {"min-width":$("#content").width(), "max-width":$("#content").width(), "max-height":$("#lang").offset().top-55} );
+    $( window ).on( "orientationchange resize", function( event ) {
+        setTimeout(function(){
+            adjustHeight(); 
+        }, 100); 
+    }); 
+    
+    
+</script>
+</html>
