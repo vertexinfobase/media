@@ -249,8 +249,7 @@ x cv                                                                            
     }
 
     adjustHeight(); 
-    $("#screen").css( {"min-width":$("#content").width(), "min-height":$("#content").width()*50/100} );
-    $("#rain").css( {"min-width":$("#content").width(), "max-width":$("#content").width(), "max-height":$("#lang").offset().top-55} );
+    $("#screen, #rain").css( {"min-width":$("#content").width(), "min-height":$("#content").width()*50/100} );
     $( window ).on( "orientationchange resize", function( event ) {
         setTimeout(function(){
             adjustHeight(); 
