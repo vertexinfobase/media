@@ -40,18 +40,18 @@
         #footer{ min-height:100px; height:auto; width:var(--sw); background:gainsboro; padding-top:10pt; padding-top:10pt; font-size:1.05rem; }
         */
 
-        #langWrapper{width:100%; background:white; }
-        #lang, #mood{width:25%; height:28pt; font-size:0.95rem; border:0; }
-        #search{width:45%; height:25pt; font-size:1.25rem; border:0; background:lavender; padding-left:3pt; }
+        #langWrapper{width:100%; background:black; }
+        #lang, #mood{width:22.5%; height:28pt; font-size:0.95rem; border:0; }
+        #search{width:40%; height:29pt; vertical-align:bottom; font-size:1.25rem; border:0; background:lavender; padding-left:3pt; }
+        #caret{display:inline-block; vertical-align:bottom; width:10%; height:29pt; text-align:center; font-size:2rem; background:transparent; color:deeppink; }
 
         #showControls, #hideControls{width:48%; height:28pt; font-size:0.95rem; border:0;}
 
         @media only screen and (orientation: portrait) {
             body{ background:black; background-image: url( 'img/mobile.jpg' ); background-repeat: repeat; }
             #songsList{height:auto; overflow:hidden; background:transparent; }
-            #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
+            #songsList li{line-height:25pt; background:#999999; margin-bottom:2pt;}
             #screen iframe{width:100%; height:30vh; background:black;}
-            
             /*
             #rain{height:24vh; background:black; }
             header{ height:calc(var(--sh)*6/100); }
@@ -61,9 +61,8 @@
         @media only screen and (orientation: landscape) {
             body{ background:black; background-image: url( 'img/desktop.jpg' ); background-repeat: repeat; }
             #songsList{height:auto; overflow:hidden; background:transparent;}
-            #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
+            #songsList li{line-height:25pt; background:#999999; margin-bottom:2pt;}
             #screen iframe{width:100%; height:50vh; background:black;}
-            
             #main{ margin-left:var(--lm); }
             /*
             #rain{height:43.5vh; background:black; }
@@ -85,9 +84,14 @@
                 
                 <video id="rain" autoplay muted loop plays-inline style="position:fixed; z-index:10; top:0;">
                     <source src="vid/sample.mp4" type="video/mp4">
+                    video not supported
                 </video>
 
+                
+
                 <div id="langWrapper">
+                    <input type="text" id="search" placeholder="search..." autocomplete="off" />
+
                     <select id="lang">
                         <option value="Language" selected="selected">Language</option>
                         <option value="Punjabi">Punjabi</option>
@@ -99,21 +103,25 @@
                         <option value="Motivational">Motivational</option>
                         <option value="Romantic">Romantic</option>
                     </select>
+
+                    <span id="caret" class="fa fa-caret-down"></span>
     
-                    <input type="text" id="search" placeholder="search..." autocomplete="off" />
                 </div>
 
+                <!--
                 <div style="display:block; width:100%; background:white;">
                     <button id="showControls" style="background:springgreen">Controls On</button>
                     <button id="hideControls" style="background:orangered;color:white">Controls Off</button>
                 </div>
-                
+                -->
+
                 <br>
                 <ul id="songsList">
-                    <li class="songs" title="Paar Chana De_Shilpa Rao & Noori_Hindi_Motivational_a_https://www.youtube.com/embed/TrPvQvbp3Cg?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=6&end=">&#x23f5; Paar Chana De</li>
-                    <li class="songs" title="Kitt Vall Nu_Chamkaur Singh Sekhon_Punjabi_Romantic_v_https://www.youtube.com/embed/guB5r7gD-hM?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=0&end=">&#x23f5; Kitt Vall Nu</li>
+                    <li class="songs" title="Paar Chana De_Shilpa Rao & Noori_Hindi_Motivational_a_TrPvQvbp3Cg?start=6&end=">&#x23f5; Paar Chana De</li>
+                    <li class="songs" title="Kitt Vall Nu_Chamkaur Singh Sekhon_Punjabi_Romantic_v_guB5r7gD-hM?start=0&end=">&#x23f5; Kitt Vall Nu</li>
+                    <li class="songs" title="Jind Mahia_Shuja Haider_Punjabi_Romantic_v_bUOArq33ImM?start=&end=">&#x23f5; Jind Mahia</li>
+                    <li class="songs" title="Dildar Sadqay_Jawad Ahmad & Elizabeth Rai_Punjabi_Romantic_v_SCOKysMnH50?start=&end=">&#x23f5; Dildar Sadqay</li>
 
-                
                 </ul>
 
             </div>
@@ -134,30 +142,39 @@
 <script>
     $(document).ready(function(){
         $(".songs").on("click",function(e){
-            $(".songs").css({"background":"gainsboro"}); 
-            $(this).css({"background":"#999999"}); 
+            $(".songs").css({"background":"#999999"}); 
+            $(this).css({"background":"gainsboro"}); 
             let parts = $(this).attr("title").split("_"); 
+
+            let firstPart = "https://www.youtube.com/embed/"; 
+            let lastPart = "rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1";
+            let fullURL = firstPart + parts[5] + lastPart; 
             
             if(parts[4].includes("a")){
                 //$("#lang").offset().top
                 
                 $("iframe").css({"display":"block"}); 
-                $("#rain").css({"display":"block"}); 
-                $("iframe").attr("src", parts[5]); 
+                $("#rain, #caret").css({"display":"inline-block"}); 
+                $("iframe").attr("src", fullURL); 
                 
             }else{
-                $("#rain").css({"display":"none"}); 
+                $("#rain, #caret").css({"display":"none"}); 
                 $("iframe").css({"display":"block"}); 
-                $("iframe").attr("src", parts[5]); 
+                $("iframe").attr("src", fullURL); 
             }
             //$("iframe").attr("src", parts[4]); 
         }); 
 
-        $("#showControls").on("click",function(e){
-            $("#rain").css( {"height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*27/100) } );
-        }); 
-        $("#hideControls").on("click",function(e){
-            $("#rain").css( {"height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*0/100) } );
+        $("#caret").on("click",function(e){
+            if( $("#langWrapper").offset().top == $("#rain").height() ){
+                $("#rain").css( {"height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*27/100) } );
+                $("#caret").removeClass("fa-caret-down"); 
+                $("#caret").addClass("fa-caret-up"); 
+            }else{
+                $("#rain").css( {"height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*0/100) } );
+                $("#caret").removeClass("fa-caret-up"); 
+                $("#caret").addClass("fa-caret-down"); 
+            }
         }); 
 
         $('#lang').change(function(e){
@@ -234,7 +251,7 @@
         $("#rain").css( {"background":"black", "width":$("#screen").width() } );
         $("#rain").css( {"height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*0/100) } );
 
-        console.log( $("#langWrapper").offset().top );
+        //console.log( $("#langWrapper").offset().top );
 
         $( window ).on( "orientationchange resize", function( event ) {
             setTimeout(function(){
