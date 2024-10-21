@@ -1,4 +1,4 @@
-x cv                                                                                                                                        <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,15 +40,18 @@ x cv                                                                            
         #footer{ min-height:100px; height:auto; width:var(--sw); background:gainsboro; padding-top:10pt; padding-top:10pt; font-size:1.05rem; }
         */
 
-        #lang, #mood{width:25%; height:25pt; font-size:0.95rem; }
-        #search{width:47%; height:25pt; font-size:1.25rem; }
+        #lang, #mood{width:30%; height:28pt; font-size:0.95rem; border:0; }
+        #langWrapper{width:100%; background:white; }
+        #search{width:35%; height:25pt; font-size:1.25rem; border:0; background:lavender; padding-left:3pt; }
+
         @media only screen and (orientation: portrait) {
             body{ background:black; background-image: url( 'img/mobile.jpg' ); background-repeat: repeat; }
-            #songsList{height:auto; overflow:hidden; background:darkslategray; }
+            #songsList{height:auto; overflow:hidden; background:transparent; }
             #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
             #screen iframe{width:100%; height:30vh; background:black;}
-            #rain{height:30vh;}
+            
             /*
+            #rain{height:24vh; background:black; }
             header{ height:calc(var(--sh)*6/100); }
             #article{ padding-top:calc(var(--sh)*6/100); }
             */ 
@@ -58,9 +61,10 @@ x cv                                                                            
             #songsList{height:auto; overflow:hidden; background:transparent;}
             #songsList li{line-height:25pt; background:gainsboro; margin-bottom:2pt;}
             #screen iframe{width:100%; height:50vh; background:black;}
-            #rain{height:50vh;}
+            
             #main{ margin-left:var(--lm); }
             /*
+            #rain{height:43.5vh; background:black; }
             header{ height:calc(var(--sw)*6/100); }
             #article{ padding-top:calc(var(--sw)*6/100); }
             */
@@ -77,25 +81,27 @@ x cv                                                                            
                     <iframe id="player" src="" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen data-autoplay data-keepplaying" frameborder='0' style="z-index:2; border:0; outline:none;"></iframe>
                 </div>
                 
-                <video id="rain" autoplay muted loop plays-inline style="position:fixed; z-index:10; top:0; background:black;">
+                <video id="rain" autoplay muted loop plays-inline style="position:fixed; z-index:10; top:0;">
                     <source src="vid/sample.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
 
-                <select id="lang">
-                    <option value="All Languages" selected="selected">All Languages</option>
-                    <option value="Punjabi">Punjabi</option>
-                    <option value="Hindi">Hindi</option>
-                </select>
-
-                <select id="mood">
-                    <option value="All Moods" selected="selected">All Moods</option>
-                    <option value="Motivational">Motivational</option>
-                    <option value="Romantic">Romantic</option>
-                </select>
-
-                <input type="text" id="search" placeholder="search..." autocomplete="off" />
-
+                <div id="langWrapper">
+                    <select id="lang">
+                        <option value="Language" selected="selected">All Languages</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="Hindi">Hindi</option>
+                    </select>
+    
+                    <select id="mood">
+                        <option value="Mood" selected="selected">All Moods</option>
+                        <option value="Motivational">Motivational</option>
+                        <option value="Romantic">Romantic</option>
+                    </select>
+    
+                    <input type="text" id="search" placeholder="search..." autocomplete="off" />
+                </div>
+                
                 <ul id="songsList">
                     <li class="songs" title="Paar Chana De_Shilpa Rao & Noori_Hindi_Motivational_a_https://www.youtube.com/embed/TrPvQvbp3Cg?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=6&end=">&#x23f5; Paar Chana De</li>
                     <li class="songs" title="Kitt Vall Nu_Chamkaur Singh Sekhon_Punjabi_Romantic_v_https://www.youtube.com/embed/guB5r7gD-hM?rel=0&color=red&modestbranding=1&wmode=transparent&autoplay=1&mute=0&playsinline=1&loop=0&disablekb=0&controls=1&start=0&end=">&#x23f5; Kitt Vall Nu</li>
@@ -186,7 +192,7 @@ x cv                                                                            
 
     $('#lang').change(function(e){
         let selectedOption = $(this).val(); 
-        if( $(this).val().includes("All Languages")){
+        if( $(this).val().includes("Language")){
             for(var i = 0; i < $(".songs").length; i++){
                 $(".songs").eq(i).show(); 
             }
@@ -203,7 +209,7 @@ x cv                                                                            
 
     $('#mood').change(function(e){
         let selectedOption = $(this).val(); 
-        if( $(this).val().includes("All Moods")){
+        if( $(this).val().includes("Mood")){
             for(var i = 0; i < $(".songs").length; i++){
                 $(".songs").eq(i).show(); 
             }
@@ -239,20 +245,25 @@ x cv                                                                            
             //-----Portrait-------//
             ht = $(window).innerHeight(); 
             wd = $(window).innerWidth(); 
+            ml = ( $(window).innerWidth() - $(window).innerHeight() ) / 2; 
             //$("#content").text( wd/ht ); 
+            $("#rain").css( {"background":"black", "width":$("#screen").width(), "height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*20/100) } );
         }else{
             //-----Landscape-------// 
             ht = $(window).innerWidth(); 
             wd = $(window).innerHeight(); 
             //$("#content").text( wd/ht ); 
             ml = ( $(window).innerWidth() - $(window).innerHeight() ) / 2; 
+            $("#rain").css( {"background":"black", "width":$("#screen").width(), "height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*13/100) } );
         }
         $("#hwUpdater").text( ':root{ --lm:' + ml + 'px; --sh:' + ht + 'px; --sw:' + wd + 'px}' ); 
+        
     }
 
     adjustHeight(); 
     $("#screen").css( {"min-width":$("#content").width(), "min-height":$("#content").width()*50/100} );
-    $("#rain").css( {"min-width":$("#content").width(), "max-width":$("#content").width(), "min-height":$("#lang").offset().top,"max-height":$("#lang").offset().top, } );
+    
+    console.log( $("#langWrapper").offset().top ); 
     $( window ).on( "orientationchange resize", function( event ) {
         setTimeout(function(){
             adjustHeight(); 
