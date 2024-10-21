@@ -88,13 +88,13 @@
 
                 <div id="langWrapper">
                     <select id="lang">
-                        <option value="Language" selected="selected">All Languages</option>
+                        <option value="Language" selected="selected">Language</option>
                         <option value="Punjabi">Punjabi</option>
                         <option value="Hindi">Hindi</option>
                     </select>
     
                     <select id="mood">
-                        <option value="Mood" selected="selected">All Moods</option>
+                        <option value="Mood" selected="selected">Mood</option>
                         <option value="Motivational">Motivational</option>
                         <option value="Romantic">Romantic</option>
                     </select>
@@ -126,47 +126,6 @@
 </body>
 <script>
     $(document).ready(function(){
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-            height: '390',
-            width: '640',
-            videoId: '4P6rpn9FjRE',
-            playerVars: {
-                'playsinline': 1
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-            });
-        }
-        
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        var done = false;
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
-                setTimeout(stopVideo, 6000);
-                done = true;
-            }
-        }
-
-        function stopVideo() {
-            player.stopVideo();
-        }
-
-        $("#pauseVideo").on("click",function(){
-            player.pauseVideo(); 
-        })
-
         $(".songs").on("click",function(e){
             $(".songs").css({"background":"gainsboro"}); 
             $(this).css({"background":"#999999"}); 
