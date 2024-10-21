@@ -254,12 +254,11 @@
                 $("#rain").css( {"background":"black", "width":$("#screen").width(), "height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*13/100) } );
             }
             $("#hwUpdater").text( ':root{ --lm:' + ml + 'px; --sh:' + ht + 'px; --sw:' + wd + 'px}' ); 
-            
         }
 
         adjustHeight(); 
         $("#screen").css( {"min-width":$("#content").width(), "min-height":$("#content").width()*50/100} );
-        
+        //$("#rain").css( {"background":"black", "width":$("#screen").width(), "height":($("#langWrapper").offset().top)-($("#langWrapper").offset().top*25/100) } );
         console.log( $("#langWrapper").offset().top ); 
         $( window ).on( "orientationchange resize", function( event ) {
             setTimeout(function(){
